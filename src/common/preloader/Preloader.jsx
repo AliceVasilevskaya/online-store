@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Preloader.module.css";
-import preloader from "../../common/images/preloader.png";
+import preloader from "../images/preloader.png";
 
 const Preloader = function () {
   return (

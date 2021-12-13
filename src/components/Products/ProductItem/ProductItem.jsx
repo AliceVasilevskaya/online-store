@@ -2,7 +2,7 @@ import React from "react";
 import moment from "moment";
 import { Link } from "react-router-dom";
 import styles from "./ProductItem.module.css";
-import Button from "../../../common/Button/Button";
+import Button from "../../../common/button/Button";
 
 const ProductItem = function ({ item, addProductToCart }) {
   const { id, name, origin, createdAt, updatedAt, price } = item;

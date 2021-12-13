@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router";
-import productApi from "./product-api";
-import { useProducts } from "../Products/products-context";
+import productApi from "../../api/product-api";
+import { useProducts } from "../../context/products/products-context";
 import ProductInfo from "./ProductInfo";
-import { actions } from "../Products/productsReducer";
-import { useCart } from "../CartList/cart-context";
-import Preloader from "../Preloader/Preloader";
+import { actions } from "../../context/products/productsReducer";
+import { useCart } from "../../context/cart/cart-context";
+import Preloader from "../../common/preloader/Preloader";
 
 const ProductInfoContainer = function () {
   const {

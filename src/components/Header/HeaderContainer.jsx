@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router";
 import Header from "./Header";
-import { useCart } from "../CartList/cart-context";
+import { useCart } from "../../context/cart/cart-context";
 
 const HeaderContainer = function () {
   const { state } = useCart();

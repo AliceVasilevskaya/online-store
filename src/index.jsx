@@ -6,7 +6,6 @@ import reportWebVitals from "./reportWebVitals";
 import App from "./App";
 
 ReactDOM.render(
-  // eslint-disable-next-line react/jsx-filename-extension
   <BrowserRouter>
     <App />
   </BrowserRouter>,

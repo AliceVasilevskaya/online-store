@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import { actions } from "./productsReducer";
-import productsApi from "./products-api";
-import { useProducts } from "./products-context";
+import { actions } from "../../context/products/productsReducer";
+import productsApi from "../../api/products-api";
+import { useProducts } from "../../context/products/products-context";
 import Products from "./Products";
-import Preloader from "../Preloader/Preloader";
+import Preloader from "../../common/preloader/Preloader";
 
 const ProductsContainer = function () {
   const { state, dispatch } = useProducts();

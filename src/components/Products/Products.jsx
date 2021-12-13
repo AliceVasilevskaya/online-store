@@ -1,6 +1,6 @@
 import React from "react";
 import ProductItemContainer from "./ProductItem/ProductItemContainer";
-import Preloader from "../Preloader/Preloader";
+import Preloader from "../../common/preloader/Preloader";
 
 const Products = function ({ products }) {
   return (

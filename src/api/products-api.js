@@ -1,4 +1,4 @@
-import instance from "../../common/api/api";
+import instance from "./api";
 
 const productsApi = {
   getProductsList() {

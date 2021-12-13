@@ -1,16 +1,15 @@
 import React from "react";
 import "./App.css";
 import { Route, Switch } from "react-router";
-import HeaderContainer from "./Pages/Header/HeaderContainer";
-import ProductsContainer from "./Pages/Products/ProductsContainer";
-import { ProductsProvider } from "./Pages/Products/products-context";
-import { CartContextProvider } from "./Pages/CartList/cart-context";
-import CartContainer from "./Pages/CartList/CartContainer";
-import ProductInfoContainer from "./Pages/ProductInfo/ProductInfoContainer";
+import HeaderContainer from "./components/Header/HeaderContainer";
+import ProductsContainer from "./components/Products/ProductsContainer";
+import { ProductsProvider } from "./context/products/products-context";
+import { CartContextProvider } from "./context/cart/cart-context";
+import CartContainer from "./components/CartList/CartContainer";
+import ProductInfoContainer from "./components/ProductInfo/ProductInfoContainer";
 
 const App = function () {
   return (
-    // eslint-disable-next-line react/jsx-filename-extension
     <div className="app-wrapper">
       <ProductsProvider>
         <CartContextProvider>
