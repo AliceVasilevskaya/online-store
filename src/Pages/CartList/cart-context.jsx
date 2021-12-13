@@ -1,0 +1,29 @@
+import React, { createContext, useMemo } from "react";
+import cartReducer, { actions } from "./cartReducer";
+
+const CartContext = createContext();
+
+const initialState = {
+  items: [],
+  totalPrice: null,
+};
+
+const CartContextProvider = function ({ children }) {
+  const [state, dispatch] = React.useReducer(cartReducer, initialState);
+  state.addProductToCart = (productItem, quantity) => {
+    dispatch(actions.addProductToCart(productItem, quantity));
+    dispatch(actions.setTotalPrice());
+  };
+  const value = useMemo(() => ({ state, dispatch }), [state, dispatch]);
+  return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
+};
+
+function useCart() {
+  const context = React.useContext(CartContext);
+  if (context === undefined) {
+    throw new Error("useCart must be used within a CartProvider");
+  }
+  return context;
+}
+
+export { useCart, CartContextProvider };
