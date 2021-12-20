@@ -12,12 +12,14 @@
     "ecmaFeatures": {
       "jsx": true
     },
-    "ecmaVersion": 12,
+    "ecmaVersion": 11,
     "sourceType": "module"
   },
   "plugins": ["react"],
   "rules": {
-    "prettier/prettier": 0,
+    "prettier/prettier": ["error", {
+      "endOfLine":"auto"
+    }],
     "func-names": "off",
     "react/no-children-prop": "off",
     "react/prop-types": "off"

@@ -8,4 +8,5 @@ const CartContainer = function () {
   } = useCart();
   return <CartList totalPrice={totalPrice} cartItems={items} />;
 };
+
 export default CartContainer;

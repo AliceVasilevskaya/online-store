@@ -1,11 +1,9 @@
 import React from "react";
 import ProductItem from "./ProductItem";
-import {useCart} from "../../../context/cart/cart-context";
+import { useCart } from "../../../context/cart/cart-context";
 
 const ProductItemContainer = function ({ item }) {
-    const {state} = useCart()
-    return (
-      <ProductItem item = {item} addProductToCart = {state.addProductToCart}/>
-    );
+  const { addProductToCart } = useCart();
+  return <ProductItem item={item} addProductToCart={addProductToCart} />;
 };
 export default ProductItemContainer;

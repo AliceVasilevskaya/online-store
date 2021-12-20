@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { productsReducer } from "./productsReducer";
+import { productsReducer } from "./products-reducer";
 
 const initialState = {
   products: [],

@@ -1,8 +1,8 @@
 import React from "react";
 import moment from "moment";
 import styles from "./ProductInfo.module.css";
-import Button from "../../common/button/Button";
-import Preloader from "../../common/preloader/Preloader";
+import Button from "../../ui-kit/Button/Button";
+import Preloader from "../../ui-kit/Preloader/Preloader";
 
 const ProductInfo = function ({ product, addProductToCart }) {
   const { name, origin, createdAt, updatedAt, price } = product;

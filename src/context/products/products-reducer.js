@@ -1,14 +1,20 @@
+import {
+  setProduct,
+  setProducts,
+  toggleIsFetching,
+} from "./product-action-types";
+
 export const productsReducer = (state, action) => {
   switch (action.type) {
-    case "online-store/productsPage/SET_PRODUCTS":
+    case setProducts:
       return { ...state, products: action.payload.products };
-    case "online-store/productsPage/SET_PRODUCT": {
+    case setProduct: {
       return {
         ...state,
         product: action.payload.product,
       };
     }
-    case "online-store/productsPage/TOGGLE_IS_FETCHING":
+    case toggleIsFetching:
       return { ...state, isFetching: action.isFetching };
     default:
       return state;
@@ -16,15 +22,15 @@ export const productsReducer = (state, action) => {
 };
 export const actions = {
   setProducts: (products) => ({
-    type: "online-store/productsPage/SET_PRODUCTS",
+    type: setProducts,
     payload: { products },
   }),
   setProduct: (product) => ({
-    type: "online-store/productsPage/SET_PRODUCT",
+    type: setProduct,
     payload: { product },
   }),
   toggleIsFetching: (isFetching) => ({
-    type: "online-store/productsPage/TOGGLE_IS_FETCHING",
+    type: toggleIsFetching,
     payload: { isFetching },
   }),
 };

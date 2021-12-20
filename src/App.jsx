@@ -1,12 +1,10 @@
 import React from "react";
 import "./App.css";
-import { Route, Switch } from "react-router";
 import HeaderContainer from "./components/Header/HeaderContainer";
-import ProductsContainer from "./components/Products/ProductsContainer";
 import { ProductsProvider } from "./context/products/products-context";
 import { CartContextProvider } from "./context/cart/cart-context";
-import CartContainer from "./components/CartList/CartContainer";
-import ProductInfoContainer from "./components/ProductInfo/ProductInfoContainer";
+
+import routes from "./routes/routes";
 
 const App = function () {
   return (
@@ -14,17 +12,7 @@ const App = function () {
       <ProductsProvider>
         <CartContextProvider>
           <HeaderContainer />
-          <div className="app-wrapper-content">
-            <Switch>
-              <Route path="/cart" render={() => <CartContainer />} />
-              <Route
-                path="/products/:productId"
-                render={() => <ProductInfoContainer />}
-              />
-              <Route path="/products" render={() => <ProductsContainer />} />
-              <Route path="*" render={() => <div>Page not found</div>} />
-            </Switch>
-          </div>
+          <div className="app-wrapper-content">{routes}</div>
         </CartContextProvider>
       </ProductsProvider>
     </div>

@@ -1,10 +1,8 @@
-import instance from "./api";
+import getProduct from "./product-endpoints";
 
 const productApi = {
   getProductItem(productId) {
-    return instance
-      .get(`products/${productId}`)
-      .then((response) => response.data);
+    return getProduct(productId);
   },
 };
 export default productApi;

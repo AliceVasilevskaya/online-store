@@ -1,6 +1,8 @@
+import { addProductToCart, setTotalPrice } from "./cart-action-types";
+
 const cartReducer = (state, action) => {
   switch (action.type) {
-    case "online-store/cartPage/ADD_PRODUCT_TO_CART": {
+    case addProductToCart: {
       let cartList = [];
       const itemIndex = state.items.findIndex(
         (value) => value.id === action.payload.item.id
@@ -24,7 +26,7 @@ const cartReducer = (state, action) => {
         items: cartList,
       };
     }
-    case "online-store/cartPage/SET_TOTAL_PRICE": {
+    case setTotalPrice: {
       const totalPrice = state.items.reduce(
         (sum, item) => sum + item.price * item.quantity,
         0
@@ -38,13 +40,14 @@ const cartReducer = (state, action) => {
       return state;
   }
 };
+
 export const actions = {
   addProductToCart: (item, quantity) => ({
-    type: "online-store/cartPage/ADD_PRODUCT_TO_CART",
+    type: addProductToCart,
     payload: { item, quantity },
   }),
   setTotalPrice: () => ({
-    type: "online-store/cartPage/SET_TOTAL_PRICE",
+    type: setTotalPrice,
   }),
 };
 

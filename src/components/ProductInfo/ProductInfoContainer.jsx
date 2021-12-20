@@ -3,18 +3,16 @@ import { useParams } from "react-router";
 import productApi from "../../api/product-api";
 import { useProducts } from "../../context/products/products-context";
 import ProductInfo from "./ProductInfo";
-import { actions } from "../../context/products/productsReducer";
+import { actions } from "../../context/products/products-reducer";
 import { useCart } from "../../context/cart/cart-context";
-import Preloader from "../../common/preloader/Preloader";
+import Preloader from "../../ui-kit/Preloader/Preloader";
 
 const ProductInfoContainer = function () {
   const {
     state: { product, isFetching },
     dispatch,
   } = useProducts();
-  const {
-    state: { addProductToCart },
-  } = useCart();
+  const { addProductToCart } = useCart();
   const params = useParams();
   const { productId } = params;
 

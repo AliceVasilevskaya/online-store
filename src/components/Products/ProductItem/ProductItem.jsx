@@ -2,14 +2,15 @@ import React from "react";
 import moment from "moment";
 import { Link } from "react-router-dom";
 import styles from "./ProductItem.module.css";
-import Button from "../../../common/button/Button";
+import Button from "../../../ui-kit/Button/Button";
+import ROUTES from "../../../routes/pathsOfRoutes";
 
 const ProductItem = function ({ item, addProductToCart }) {
   const { id, name, origin, createdAt, updatedAt, price } = item;
   return (
     <div className={styles.productInfoContainer}>
       <div className={styles.left}>
-        <Link to={`/products/${id}`}>
+        <Link to={`${ROUTES.PRODUCTS}/${id}`}>
           <div className={styles.name}>{name}</div>
         </Link>
         <div className={styles.origin}>Origin: {origin.toUpperCase()}</div>

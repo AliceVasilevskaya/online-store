@@ -6,7 +6,7 @@ import { useCart } from "../../context/cart/cart-context";
 const HeaderContainer = function () {
   const { state } = useCart();
   const params = useLocation();
-
   return <Header totalPrice={state.totalPrice} params={params} />;
 };
+
 export default HeaderContainer;

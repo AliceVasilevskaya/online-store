@@ -1,8 +1,8 @@
-import instance from "./api";
+import getProducts from "./products-endpoints";
 
 const productsApi = {
   getProductsList() {
-    return instance.get(`products`).then((response) => response.data);
+    return getProducts();
   },
 };
 export default productsApi;

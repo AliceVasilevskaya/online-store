@@ -9,4 +9,5 @@ const Preloader = function () {
     </div>
   );
 };
+
 export default Preloader;
