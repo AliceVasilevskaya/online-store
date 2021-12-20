@@ -1,0 +1,52 @@
+.cartContent {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cartMain {
+    width: 100%;
+}
+
+.cartTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.cartTable td, th {
+    border-bottom: 1px solid darkgrey;
+    padding: 10px;
+    text-align: left;
+}
+
+.cartTable th {
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.cartTable td {
+    height: 80px;
+}
+
+.productName {
+    position: relative;
+    width: 70%;
+}
+
+.total {
+    font-weight: 500;
+}
+
+.product a {
+    color: black;
+    outline: none;
+    text-decoration: none;
+    font-size: 20px;
+    background-color: transparent;
+}
+
+.product a:hover {
+    color: black;
+    text-shadow: 0 0 4px aquamarine;
+}
+

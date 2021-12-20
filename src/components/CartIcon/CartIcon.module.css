@@ -1,0 +1,14 @@
+.cartIcon {
+  margin: -5px 0 0 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.totalPrice {
+  margin: -10px 0 0 13px;
+  color: white;
+  font-size: 15px;
+  text-align: center;
+}
