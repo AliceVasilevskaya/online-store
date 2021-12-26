@@ -3,7 +3,7 @@ import cartReducer, { actions } from "./cart-reducer";
 
 const CartContext = createContext();
 
-const initialState = {
+export const initialState = {
   items: [],
   totalPrice: null,
 };

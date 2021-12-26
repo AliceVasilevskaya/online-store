@@ -1,32 +1,55 @@
 import React, { useEffect } from "react";
-import { actions } from "../../context/products/products-reducer";
-import productsApi from "../../api/products-api";
-import { useProducts } from "../../context/products/products-context";
+import { useDispatch, useSelector } from "react-redux";
 import Products from "./Products";
 import Preloader from "../../ui-kit/Preloader/Preloader";
 
+import {
+  getCurrentPage,
+  getIsFetching,
+  getPageSize,
+  getPortionNumber,
+  getProducts,
+  getTotalItems,
+} from "../../context/products/products-selectors";
+import { actions, getItems } from "../../context/products/products-reducer";
+import Paginator from "../../ui-kit/Paginator/Paginator";
+import ShowPerPage from "../../ui-kit/ShowPerPage/ShowPerPage";
+
 const ProductsContainer = function () {
-  const { state, dispatch } = useProducts();
+  const totalItems = useSelector(getTotalItems);
+  const perPage = useSelector(getPageSize);
+  const page = useSelector(getCurrentPage);
+  const dispatch = useDispatch();
+  const items = useSelector(getProducts);
+  const isFetching = useSelector(getIsFetching);
+  const portionNumber = useSelector(getPortionNumber);
   useEffect(() => {
-    (async function () {
-      try {
-        dispatch(actions.toggleIsFetching(true));
-        const data = await productsApi.getProductsList();
-        dispatch(actions.setProducts(data.items));
-      } catch (error) {
-        throw new Error(error);
-      } finally {
-        dispatch(actions.toggleIsFetching(false));
-      }
-    })();
+    dispatch(getItems(page, perPage));
   }, []);
 
+  const onPageClick = (currentPage, number) => {
+    number && dispatch(actions.setPortionNumber(number));
+    dispatch(getItems(currentPage, perPage));
+  };
+  const handleChange = (event) => {
+    dispatch(getItems(page, event.target.value));
+  };
   return (
     <div>
-      {state.isFetching ? (
+      {isFetching ? (
         <Preloader />
       ) : (
-        <Products products={state.products} />
+        <div>
+          <Paginator
+            portionNumber={portionNumber}
+            onPageClick={onPageClick}
+            totalItems={totalItems}
+            perPage={perPage}
+            currentPage={page}
+          />
+          <ShowPerPage perPage={perPage} handleChange={handleChange} />
+          <Products products={items} />
+        </div>
       )}
     </div>
   );

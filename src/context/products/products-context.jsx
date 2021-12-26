@@ -5,6 +5,9 @@ const initialState = {
   products: [],
   product: {},
   isFetching: true,
+  totalItems: 0,
+  page: 1,
+  perPage: 10,
 };
 
 const ProductsContext = React.createContext();

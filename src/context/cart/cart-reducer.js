@@ -1,6 +1,6 @@
 import { addProductToCart, setTotalPrice } from "./cart-action-types";
 
-const cartReducer = (state, action) => {
+const cartReducer = (state = {}, action = {}) => {
   switch (action.type) {
     case addProductToCart: {
       let cartList = [];
