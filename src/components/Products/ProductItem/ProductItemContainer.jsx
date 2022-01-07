@@ -1,9 +1,13 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import ProductItem from "./ProductItem";
-import { useCart } from "../../../context/cart/cart-context";
+import { addProductToCart } from "../../../store/cart/cart-slice";
 
 const ProductItemContainer = function ({ item }) {
-  const { addProductToCart } = useCart();
-  return <ProductItem item={item} addProductToCart={addProductToCart} />;
+  const dispatch = useDispatch();
+  const addProduct = (productItem, quantity) => {
+    dispatch(addProductToCart(productItem, quantity));
+  };
+  return <ProductItem item={item} addProductToCart={addProduct} />;
 };
 export default ProductItemContainer;

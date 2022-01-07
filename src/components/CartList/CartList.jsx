@@ -2,7 +2,13 @@ import React from "react";
 import styles from "./Cart.module.css";
 import CartItem from "./CartItem/CartItem";
 
-const CartList = function ({ totalPrice, cartItems }) {
+const CartList = function ({
+  totalPrice,
+  cartItems,
+  addProductToCart,
+  deleteProductFromCart,
+  deleteAllProductsByType,
+}) {
   return (
     <div>
       <h2>Shopping Cart</h2>
@@ -22,7 +28,13 @@ const CartList = function ({ totalPrice, cartItems }) {
               </thead>
               <tbody>
                 {cartItems.map((item) => (
-                  <CartItem key={item.id} item={item} />
+                  <CartItem
+                    key={item.id}
+                    item={item}
+                    addProductToCart={addProductToCart}
+                    deleteProductFromCart={deleteProductFromCart}
+                    deleteAllProductsByType={deleteAllProductsByType}
+                  />
                 ))}
                 <tr>
                   <th colSpan="3">Subtotal</th>

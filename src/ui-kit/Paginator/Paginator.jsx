@@ -15,7 +15,7 @@ const Paginator = function ({
   for (let i = 1; i <= pagesCount; i += 1) {
     pages.push(i);
   }
-  const portionCount = Math.ceil(pagesCount / portionSize);
+  const portionCount = Math.ceil(pagesCount / portionSize) - 1;
   const leftPortionPageNumber = (portionNumber - 1) * portionSize + 1;
   const rightPortionPageNumber = portionNumber * portionSize + 2;
   return (
@@ -63,8 +63,7 @@ const Paginator = function ({
               </li>
             );
           })}
-
-        {portionNumber !== portionCount && (
+        {portionNumber !== portionCount && pagesCount > 4 && (
           <>
             <Dots />
             <Arrow
@@ -76,7 +75,7 @@ const Paginator = function ({
             />
           </>
         )}
-        {currentPage < pagesCount && (
+        {currentPage < pagesCount && pagesCount > 4 && (
           <Arrow
             currentPage={currentPage}
             whichPortionNumber={rightPortionPageNumber}

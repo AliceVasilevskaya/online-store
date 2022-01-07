@@ -1,10 +1,11 @@
 import React from "react";
+import styles from "./ShowPerPage.module.css";
 
-const ShowPerPage = function ({ perPage, handleChange }) {
+const ShowPerPage = function ({ perPage, changePerPage }) {
   return (
-    <div>
-      Show per page:
-      <select name="perPage" value={perPage} onChange={handleChange}>
+    <div className={styles.perPage}>
+      {`Show per page: `}
+      <select name="perPage" value={perPage} onChange={changePerPage}>
         <option value="10" defaultValue="10">
           10
         </option>
