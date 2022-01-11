@@ -4,17 +4,12 @@ import {
   getProductsOrigins,
   getProduct,
 } from "./products-async-actions";
-
 import {
   setCurrentPage,
-  setMaxPrice,
-  setMinPrice,
   setOrigins,
   setPerPage,
-  setPortionNumber,
   setProduct,
   setProducts,
-  setSelectedOrigins,
   setTotalItems,
 } from "./products-actions";
 
@@ -39,7 +34,23 @@ const initialState = productsAdapter.getInitialState({
 const productsSlice = createSlice({
   name: "products",
   initialState,
-  reducers: {},
+  reducers: {
+    setPortionNumber: (state, action) => {
+      return { ...state, portionNumber: action.payload };
+    },
+    setSelectedOrigins: (state, action) => {
+      return {
+        ...state,
+        selectedOrigins: action.payload,
+      };
+    },
+    setMaxPrice: (state, action) => {
+      return { ...state, maxPrice: action.payload };
+    },
+    setMinPrice: (state, action) => {
+      return { ...state, minPrice: action.payload };
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(setProducts, (state, action) => {
@@ -47,18 +58,6 @@ const productsSlice = createSlice({
       })
       .addCase(setProduct, (state, action) => {
         return { ...state, product: action.payload };
-      })
-      .addCase(setMaxPrice, (state, action) => {
-        return { ...state, maxPrice: action.payload };
-      })
-      .addCase(setMinPrice, (state, action) => {
-        return { ...state, minPrice: action.payload };
-      })
-      .addCase(setSelectedOrigins, (state, action) => {
-        return {
-          ...state,
-          selectedOrigins: action.payload,
-        };
       })
       .addCase(setOrigins, (state, action) => {
         const originsForSelect = [{ label: "All", value: "" }];
@@ -76,9 +75,6 @@ const productsSlice = createSlice({
       })
       .addCase(setCurrentPage, (state, action) => {
         return { ...state, page: action.payload };
-      })
-      .addCase(setPortionNumber, (state, action) => {
-        return { ...state, portionNumber: action.payload };
       })
       .addCase(setTotalItems, (state, action) => {
         return { ...state, totalItems: action.payload };
@@ -115,5 +111,11 @@ const productsSlice = createSlice({
       });
   },
 });
+export const {
+  setPortionNumber,
+  setSelectedOrigins,
+  setMinPrice,
+  setMaxPrice,
+} = productsSlice.actions;
 
 export default productsSlice;

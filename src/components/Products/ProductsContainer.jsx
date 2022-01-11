@@ -7,12 +7,13 @@ import Preloader from "../../ui-kit/Preloader/Preloader";
 import Paginator from "../../ui-kit/Paginator/Paginator";
 import ShowPerPage from "../../ui-kit/ShowPerPage/ShowPerPage";
 import ProductsFiltersContainer from "./ProductsFilters/ProductsFiltersContainer";
-import { setPortionNumber } from "../../store/products/products-actions";
+
 import ProductsSelectors from "../../store/products/products-selectors";
 import {
   getItems,
   getProductsOrigins,
 } from "../../store/products/products-async-actions";
+import { setPortionNumber } from "../../store/products/products-slice";
 
 const ProductsContainer = function () {
   const { totalItems, perPage, page, items, isFetching, portionNumber, error } =

@@ -1,5 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { normalize, schema } from "normalizr";
+import productsApi from "../../api/products-api";
+import productApi from "../../api/product-api";
 import {
   setCurrentPage,
   setOrigins,
@@ -8,8 +10,6 @@ import {
   setProducts,
   setTotalItems,
 } from "./products-actions";
-import productsApi from "../../api/products-api";
-import productApi from "../../api/product-api";
 
 export const item = new schema.Entity("items");
 export const getItems = createAsyncThunk(

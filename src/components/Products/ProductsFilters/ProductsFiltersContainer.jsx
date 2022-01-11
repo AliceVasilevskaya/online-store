@@ -1,13 +1,13 @@
 import { useDispatch } from "react-redux";
 import React from "react";
 import ProductsFilters from "./ProductsFilters";
+import ProductsSelectors from "../../../store/products/products-selectors";
+import { getItems } from "../../../store/products/products-async-actions";
 import {
   setMaxPrice,
   setMinPrice,
   setSelectedOrigins,
-} from "../../../store/products/products-actions";
-import ProductsSelectors from "../../../store/products/products-selectors";
-import { getItems } from "../../../store/products/products-async-actions";
+} from "../../../store/products/products-slice";
 
 const ProductsFiltersContainer = function ({ onPageClick }) {
   const { origins, maxPrice, minPrice, selectedOrigins, perPage } =

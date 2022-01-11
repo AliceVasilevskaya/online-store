@@ -3,7 +3,7 @@ import {
   deleteProduct,
   deleteProductsByType,
   setTotalPrice,
-} from "./cart-actions";
+} from "./cart-slice";
 
 export const addProductToCart = (item, quantity) => (dispatch) => {
   try {
