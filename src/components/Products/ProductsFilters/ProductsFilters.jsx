@@ -1,4 +1,5 @@
 import React from "react";
+import * as PropTypes from "prop-types";
 import OriginFilter from "./OriginFilter/OriginFilter";
 import PriceFilter from "./PriceFilter/PriceFilter";
 import s from "./ProductsFilters.module.css";
@@ -41,5 +42,27 @@ const ProductsFilters = function ({
       </button>
     </div>
   );
+};
+ProductsFilters.propTypes = {
+  origins: PropTypes.instanceOf(Array),
+  onOriginChange: PropTypes.func,
+  selectedOrigins: PropTypes.instanceOf(Array),
+  onFilterChange: PropTypes.func,
+  minPrice: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  maxPrice: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  onMaxPriceChange: PropTypes.func,
+  onMinPriceChange: PropTypes.func,
+  onFilterClear: PropTypes.func,
+};
+ProductsFilters.defaultProps = {
+  origins: PropTypes.instanceOf(Array),
+  onOriginChange: PropTypes.func,
+  selectedOrigins: PropTypes.instanceOf(Array),
+  onFilterChange: PropTypes.func,
+  minPrice: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  maxPrice: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  onMaxPriceChange: PropTypes.func,
+  onMinPriceChange: PropTypes.func,
+  onFilterClear: PropTypes.func,
 };
 export default ProductsFilters;

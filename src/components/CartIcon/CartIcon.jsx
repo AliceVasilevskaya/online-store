@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import * as PropTypes from "prop-types";
 import cart from "../../ui-kit/images/cartIcon.png";
 import styles from "./CartIcon.module.css";
 import ROUTES from "../../routes/pathsOfRoutes";
@@ -13,5 +14,11 @@ const CartIcon = function ({ totalPrice }) {
       </Link>
     </div>
   );
+};
+CartIcon.propTypes = {
+  totalPrice: PropTypes.number,
+};
+CartIcon.defaultProps = {
+  totalPrice: PropTypes.number,
 };
 export default CartIcon;

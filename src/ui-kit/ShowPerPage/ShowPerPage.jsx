@@ -1,4 +1,5 @@
 import React from "react";
+import * as PropTypes from "prop-types";
 import styles from "./ShowPerPage.module.css";
 
 const ShowPerPage = function ({ perPage, changePerPage }) {
@@ -14,5 +15,13 @@ const ShowPerPage = function ({ perPage, changePerPage }) {
       </select>
     </div>
   );
+};
+ShowPerPage.propTypes = {
+  perPage: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  changePerPage: PropTypes.func,
+};
+ShowPerPage.defaultProps = {
+  perPage: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  changePerPage: PropTypes.func,
 };
 export default ShowPerPage;

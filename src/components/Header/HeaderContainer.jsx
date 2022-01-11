@@ -6,7 +6,7 @@ import CartSelectors from "../../store/cart/cart-selectors";
 const HeaderContainer = function () {
   const { totalPrice } = CartSelectors();
   const params = useLocation();
-  return <Header totalPrice={totalPrice} params={params} />;
+  return <Header totalPrice={totalPrice} pathname={params.pathname} />;
 };
 
 export default HeaderContainer;

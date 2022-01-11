@@ -23,7 +23,6 @@
         "endOfLine": "auto"
       }
     ],
-    "func-names": ["error", "as-needed"],
-    "react/prop-types": "off"
+    "func-names": ["error", "as-needed"]
   }
 }

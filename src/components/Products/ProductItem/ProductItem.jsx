@@ -1,6 +1,7 @@
 import React from "react";
 import moment from "moment";
 import { Link } from "react-router-dom";
+import * as PropTypes from "prop-types";
 import styles from "./ProductItem.module.css";
 import Button from "../../../ui-kit/Button/Button";
 import ROUTES from "../../../routes/pathsOfRoutes";
@@ -25,5 +26,27 @@ const ProductItem = function ({ item, addProductToCart }) {
       </div>
     </div>
   );
+};
+ProductItem.propTypes = {
+  item: PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+    price: PropTypes.number,
+    origin: PropTypes.string,
+    createdAt: PropTypes.string,
+    updatedAt: PropTypes.string,
+  }),
+  addProductToCart: PropTypes.func,
+};
+ProductItem.defaultProps = {
+  item: PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+    price: PropTypes.number,
+    origin: PropTypes.string,
+    createdAt: PropTypes.string,
+    updatedAt: PropTypes.string,
+  }),
+  addProductToCart: PropTypes.func,
 };
 export default ProductItem;

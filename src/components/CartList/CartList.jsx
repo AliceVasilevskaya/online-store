@@ -1,4 +1,5 @@
 import React from "react";
+import * as PropTypes from "prop-types";
 import styles from "./Cart.module.css";
 import CartItem from "./CartItem/CartItem";
 
@@ -48,4 +49,19 @@ const CartList = function ({
     </div>
   );
 };
+CartList.propTypes = {
+  cartItems: PropTypes.instanceOf(Array),
+  totalPrice: PropTypes.number,
+  deleteAllProductsByType: PropTypes.func,
+  deleteProductFromCart: PropTypes.func,
+  addProductToCart: PropTypes.func,
+};
+CartList.defaultProps = {
+  cartItems: PropTypes.instanceOf(Array),
+  totalPrice: PropTypes.number,
+  deleteAllProductsByType: PropTypes.func,
+  deleteProductFromCart: PropTypes.func,
+  addProductToCart: PropTypes.func,
+};
+
 export default CartList;

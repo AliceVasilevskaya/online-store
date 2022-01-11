@@ -1,6 +1,7 @@
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 import React from "react";
+import * as PropTypes from "prop-types";
 import s from "../ProductsFilters.module.css";
 
 const PriceFilter = function ({
@@ -13,13 +14,13 @@ const PriceFilter = function ({
   return (
     <div className={s.priceFilter}>
       <input
-        value={+minPrice.toString()}
+        value={Number(minPrice)}
         onChange={(e) => onMinPriceChange(e.target.value.replace(/\D+/g, ""))}
         onBlur={onFilterChange}
       />
       &nbsp;-&nbsp;
       <input
-        value={+maxPrice.toString()}
+        value={Number(maxPrice)}
         onChange={(e) => onMaxPriceChange(e.target.value.replace(/\D+/g, ""))}
         onBlur={onFilterChange}
       />
@@ -41,5 +42,19 @@ const PriceFilter = function ({
       </div>
     </div>
   );
+};
+PriceFilter.propTypes = {
+  minPrice: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  maxPrice: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  onMaxPriceChange: PropTypes.func,
+  onMinPriceChange: PropTypes.func,
+  onFilterChange: PropTypes.func,
+};
+PriceFilter.defaultProps = {
+  minPrice: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  maxPrice: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  onMaxPriceChange: PropTypes.func,
+  onMinPriceChange: PropTypes.func,
+  onFilterChange: PropTypes.func,
 };
 export default PriceFilter;

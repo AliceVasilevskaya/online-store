@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import React from "react";
+import * as PropTypes from "prop-types";
 import ProductsFilters from "./ProductsFilters";
 import ProductsSelectors from "../../../store/products/products-selectors";
 import { getItems } from "../../../store/products/products-async-actions";
@@ -62,5 +63,11 @@ const ProductsFiltersContainer = function ({ onPageClick }) {
       />
     </div>
   );
+};
+ProductsFiltersContainer.propTypes = {
+  onPageClick: PropTypes.func,
+};
+ProductsFiltersContainer.defaultProps = {
+  onPageClick: PropTypes.func,
 };
 export default ProductsFiltersContainer;

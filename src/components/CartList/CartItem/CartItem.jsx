@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import React from "react";
+import * as PropTypes from "prop-types";
 import styles from "../Cart.module.css";
 
 const CartItem = function ({
@@ -53,5 +54,27 @@ const CartItem = function ({
       </td>
     </tr>
   );
+};
+CartItem.propTypes = {
+  item: PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+    price: PropTypes.number,
+    quantity: PropTypes.number,
+  }),
+  deleteAllProductsByType: PropTypes.func,
+  deleteProductFromCart: PropTypes.func,
+  addProductToCart: PropTypes.func,
+};
+CartItem.defaultProps = {
+  item: PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+    price: PropTypes.number,
+    quantity: PropTypes.number,
+  }),
+  deleteAllProductsByType: PropTypes.func,
+  deleteProductFromCart: PropTypes.func,
+  addProductToCart: PropTypes.func,
 };
 export default CartItem;

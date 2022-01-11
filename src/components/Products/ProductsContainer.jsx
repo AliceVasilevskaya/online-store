@@ -3,11 +3,9 @@ import { useDispatch } from "react-redux";
 import styles from "./Products.module.css";
 import Products from "./Products";
 import Preloader from "../../ui-kit/Preloader/Preloader";
-
 import Paginator from "../../ui-kit/Paginator/Paginator";
 import ShowPerPage from "../../ui-kit/ShowPerPage/ShowPerPage";
 import ProductsFiltersContainer from "./ProductsFilters/ProductsFiltersContainer";
-
 import ProductsSelectors from "../../store/products/products-selectors";
 import {
   getItems,

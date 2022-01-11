@@ -1,5 +1,6 @@
 import React from "react";
 import cn from "classnames";
+import * as PropTypes from "prop-types";
 import s from "./Paginator.module.css";
 
 const Paginator = function ({
@@ -7,7 +8,6 @@ const Paginator = function ({
   perPage,
   currentPage = 1,
   onPageClick = () => {},
-  portionSize = 2,
   portionNumber = 1,
 }) {
   const pagesCount = Math.ceil(totalItems / perPage);
@@ -15,7 +15,8 @@ const Paginator = function ({
   for (let i = 1; i <= pagesCount; i += 1) {
     pages.push(i);
   }
-  const portionCount = Math.ceil(pagesCount / portionSize) - 1;
+  const portionSize = 2;
+  const portionCount = Math.ceil(pagesCount / portionSize);
   const leftPortionPageNumber = (portionNumber - 1) * portionSize + 1;
   const rightPortionPageNumber = portionNumber * portionSize + 2;
   return (
@@ -63,7 +64,8 @@ const Paginator = function ({
               </li>
             );
           })}
-        {portionNumber !== portionCount && pagesCount > 4 && (
+
+        {portionNumber !== portionCount && (
           <>
             <Dots />
             <Arrow
@@ -75,7 +77,7 @@ const Paginator = function ({
             />
           </>
         )}
-        {currentPage < pagesCount && pagesCount > 4 && (
+        {currentPage < pagesCount && (
           <Arrow
             currentPage={currentPage}
             whichPortionNumber={rightPortionPageNumber}
@@ -120,5 +122,37 @@ const Dots = function () {
       <span> . . . </span>
     </li>
   );
+};
+Arrow.propTypes = {
+  currentPage: PropTypes.oneOfType([PropTypes.number, PropTypes.func]),
+  onPageClick: PropTypes.func,
+  portionNumber: PropTypes.number,
+  modifiedCurrentPage: PropTypes.number,
+  whichPortionNumber: PropTypes.oneOfType([PropTypes.number, PropTypes.func]),
+  text: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  className: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+};
+Arrow.defaultProps = {
+  currentPage: PropTypes.number,
+  whichPortionNumber: PropTypes.number,
+  onPageClick: PropTypes.func,
+  modifiedCurrentPage: PropTypes.number,
+  portionNumber: PropTypes.number,
+  text: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  className: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+};
+Paginator.propTypes = {
+  totalItems: PropTypes.number,
+  perPage: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  currentPage: PropTypes.number,
+  onPageClick: PropTypes.func,
+  portionNumber: PropTypes.number,
+};
+Paginator.defaultProps = {
+  totalItems: PropTypes.number,
+  perPage: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  currentPage: PropTypes.number,
+  onPageClick: PropTypes.func,
+  portionNumber: PropTypes.number,
 };
 export default Paginator;

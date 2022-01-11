@@ -1,5 +1,6 @@
 import Select from "react-select";
 import React from "react";
+import * as PropTypes from "prop-types";
 import s from "../ProductsFilters.module.css";
 
 const OriginFilter = function ({
@@ -26,5 +27,16 @@ const OriginFilter = function ({
     />
   );
 };
-
+OriginFilter.propTypes = {
+  origins: PropTypes.instanceOf(Array),
+  onOriginChange: PropTypes.func,
+  selectedOrigins: PropTypes.instanceOf(Array),
+  onFilterChange: PropTypes.func,
+};
+OriginFilter.defaultProps = {
+  origins: PropTypes.instanceOf(Array),
+  onOriginChange: PropTypes.func,
+  selectedOrigins: PropTypes.instanceOf(Array),
+  onFilterChange: PropTypes.func,
+};
 export default OriginFilter;
