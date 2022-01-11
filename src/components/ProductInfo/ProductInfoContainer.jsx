@@ -1,19 +1,15 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import ProductInfo from "./ProductInfo";
 import Preloader from "../../ui-kit/Preloader/Preloader";
-import {
-  getIsFetching,
-  getProductSelector,
-} from "../../store/products/products-selectors";
-import { addProductToCart } from "../../store/cart/cart-slice";
 import { setProduct } from "../../store/products/products-actions";
-import { getProduct } from "../../store/products/products-slice";
+import ProductsSelectors from "../../store/products/products-selectors";
+import { getProduct } from "../../store/products/products-async-actions";
+import { addProductToCart } from "../../store/cart/cart-async-actions";
 
 const ProductInfoContainer = function () {
-  const isFetching = useSelector(getIsFetching);
-  const product = useSelector(getProductSelector);
+  const { isFetching, product, error } = ProductsSelectors();
   const dispatch = useDispatch();
   const params = useParams();
   const { productId } = params;
@@ -29,6 +25,7 @@ const ProductInfoContainer = function () {
   };
   return (
     <div>
+      {error && new Error(error.message)}
       {isFetching ? (
         <Preloader />
       ) : (

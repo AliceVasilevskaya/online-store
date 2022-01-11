@@ -1,26 +1,17 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import React from "react";
-import {
-  getMaxPrice,
-  getMinPrice,
-  getOrigins,
-  getPageSize,
-  getSelectedOrigins,
-} from "../../../store/products/products-selectors";
-import { getItems } from "../../../store/products/products-slice";
 import ProductsFilters from "./ProductsFilters";
 import {
   setMaxPrice,
   setMinPrice,
   setSelectedOrigins,
 } from "../../../store/products/products-actions";
+import ProductsSelectors from "../../../store/products/products-selectors";
+import { getItems } from "../../../store/products/products-async-actions";
 
 const ProductsFiltersContainer = function ({ onPageClick }) {
-  const selectedOrigins = useSelector(getSelectedOrigins);
-  const minPrice = useSelector(getMinPrice);
-  const maxPrice = useSelector(getMaxPrice);
-  const perPage = useSelector(getPageSize);
-  const origins = useSelector(getOrigins);
+  const { origins, maxPrice, minPrice, selectedOrigins, perPage } =
+    ProductsSelectors();
   const dispatch = useDispatch();
   const onOriginChange = (e) => {
     if (
@@ -36,7 +27,11 @@ const ProductsFiltersContainer = function ({ onPageClick }) {
     dispatch(getItems({ page: 1, perPage }));
   };
   const onMinPriceChange = (e) => {
-    dispatch(setMinPrice(e));
+    let min = e;
+    if (Number(e) > maxPrice) {
+      min = maxPrice - 1;
+    }
+    dispatch(setMinPrice(min));
   };
   const onMaxPriceChange = (e) => {
     dispatch(setMaxPrice(e));

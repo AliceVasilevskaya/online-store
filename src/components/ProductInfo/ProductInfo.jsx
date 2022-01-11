@@ -31,7 +31,7 @@ const ProductInfo = function ({ product, addProductToCart }) {
           <div className={styles.right}>
             <div>Price: ${price}</div>
             <Button
-              children="Add to Cart"
+              child="Add to Cart"
               onClick={() => addProductToCart(product, 1)}
             />
           </div>

@@ -31,7 +31,7 @@ const ProductsFilters = function ({
         selectedOrigins={selectedOrigins}
       />
 
-      <Button children="Apply filter" onClick={onFilterChange} />
+      <Button child="Apply filter" onClick={onFilterChange} />
       <button
         className={s.clearAllFilters}
         type="button"

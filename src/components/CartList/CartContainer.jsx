@@ -1,16 +1,15 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import CartList from "./CartList";
-import { getItems, getTotalPrice } from "../../store/cart/cart-selectors";
+import CartSelectors from "../../store/cart/cart-selectors";
 import {
   addProductToCart,
   deleteAllProductsByType,
   deleteProductFromCart,
-} from "../../store/cart/cart-slice";
+} from "../../store/cart/cart-async-actions";
 
 const CartContainer = function () {
-  const totalPrice = useSelector(getTotalPrice);
-  const items = useSelector(getItems);
+  const { items, totalPrice } = CartSelectors();
   const dispatch = useDispatch();
   const addProduct = (productItem, quantity) => {
     dispatch(addProductToCart(productItem, quantity));

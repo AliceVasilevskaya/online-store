@@ -21,10 +21,7 @@ const ProductItem = function ({ item, addProductToCart }) {
       </div>
       <div className={styles.right}>
         <div>Price: ${price}</div>
-        <Button
-          children="Add to Cart"
-          onClick={() => addProductToCart(item, 1)}
-        />
+        <Button child="Add to Cart" onClick={() => addProductToCart(item, 1)} />
       </div>
     </div>
   );

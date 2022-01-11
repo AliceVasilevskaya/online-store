@@ -1,11 +1,10 @@
 import React from "react";
 import { useLocation } from "react-router";
-import { useSelector } from "react-redux";
 import Header from "./Header";
-import { getTotalPrice } from "../../store/cart/cart-selectors";
+import CartSelectors from "../../store/cart/cart-selectors";
 
 const HeaderContainer = function () {
-  const totalPrice = useSelector(getTotalPrice);
+  const { totalPrice } = CartSelectors();
   const params = useLocation();
   return <Header totalPrice={totalPrice} params={params} />;
 };

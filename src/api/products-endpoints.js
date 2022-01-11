@@ -9,9 +9,15 @@ const getProducts = (
   maxPrice = 10000
 ) => {
   return httpClient
-    .get(
-      `${ROUTES.PRODUCTS}?page=${page}&perPage=${perPage}&origins=${origins}&minPrice=${minPrice}&maxPrice=${maxPrice}`
-    )
+    .get(ROUTES.PRODUCTS, {
+      params: {
+        page,
+        perPage,
+        origins,
+        minPrice,
+        maxPrice,
+      },
+    })
     .then((response) => response.data);
 };
 const getOrigins = () => {

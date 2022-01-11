@@ -13,14 +13,14 @@ const PriceFilter = function ({
   return (
     <div className={s.priceFilter}>
       <input
-        value={minPrice}
-        onChange={(e) => onMinPriceChange(e.target.value)}
+        value={+minPrice.toString()}
+        onChange={(e) => onMinPriceChange(e.target.value.replace(/\D+/g, ""))}
         onBlur={onFilterChange}
       />
       &nbsp;-&nbsp;
       <input
-        value={maxPrice}
-        onChange={(e) => onMaxPriceChange(e.target.value)}
+        value={+maxPrice.toString()}
+        onChange={(e) => onMaxPriceChange(e.target.value.replace(/\D+/g, ""))}
         onBlur={onFilterChange}
       />
       &nbsp;$&nbsp;

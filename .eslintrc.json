@@ -17,17 +17,13 @@
   },
   "plugins": ["react"],
   "rules": {
-    "prettier/prettier": ["error", {
-      "endOfLine":"auto"
-    }],
-    "func-names": "off",
-    "react/no-children-prop": "off",
-    "react/prop-types": "off",
-    "default-param-last": "off",
-    "no-unused-expressions": "off",
-    "no-param-reassign": "off",
-    "jsx-a11y/label-has-associated-control": "off",
-    "no-else-return": "off",
-    "no-inline-comments": "warn"
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
+    "func-names": ["error", "as-needed"],
+    "react/prop-types": "off"
   }
 }

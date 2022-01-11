@@ -1,39 +1,31 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import styles from "./Products.module.css";
 import Products from "./Products";
 import Preloader from "../../ui-kit/Preloader/Preloader";
-import {
-  getCurrentPage,
-  getIsFetching,
-  getPageSize,
-  getPortionNumber,
-  getProducts,
-  getTotalItems,
-} from "../../store/products/products-selectors";
+
 import Paginator from "../../ui-kit/Paginator/Paginator";
 import ShowPerPage from "../../ui-kit/ShowPerPage/ShowPerPage";
+import ProductsFiltersContainer from "./ProductsFilters/ProductsFiltersContainer";
+import { setPortionNumber } from "../../store/products/products-actions";
+import ProductsSelectors from "../../store/products/products-selectors";
 import {
   getItems,
   getProductsOrigins,
-} from "../../store/products/products-slice";
-import ProductsFiltersContainer from "./ProductsFilters/ProductsFiltersContainer";
-import { setPortionNumber } from "../../store/products/products-actions";
+} from "../../store/products/products-async-actions";
 
 const ProductsContainer = function () {
-  const totalItems = useSelector(getTotalItems);
-  const perPage = useSelector(getPageSize);
-  const page = useSelector(getCurrentPage);
+  const { totalItems, perPage, page, items, isFetching, portionNumber, error } =
+    ProductsSelectors();
   const dispatch = useDispatch();
-  const items = useSelector(getProducts);
-  const isFetching = useSelector(getIsFetching);
-  const portionNumber = useSelector(getPortionNumber);
   useEffect(() => {
     dispatch(getProductsOrigins());
     dispatch(getItems({ page: 1, perPage }));
   }, []);
   const onPageClick = (currentPage, number) => {
-    number && dispatch(setPortionNumber(number));
+    if (number) {
+      dispatch(setPortionNumber(number));
+    }
     dispatch(getItems({ page: currentPage, perPage }));
   };
   const changePerPage = (event) => {
@@ -42,6 +34,7 @@ const ProductsContainer = function () {
   };
   return (
     <div>
+      {error && new Error(error.message)}
       {isFetching ? (
         <Preloader />
       ) : (
