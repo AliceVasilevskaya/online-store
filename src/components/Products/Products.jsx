@@ -1,6 +1,7 @@
 import React from "react";
 import * as PropTypes from "prop-types";
 import ProductItemContainer from "./ProductItem/ProductItemContainer";
+import { productItem } from "../../utils/constants";
 
 const Products = function ({ products }) {
   return (
@@ -11,11 +12,12 @@ const Products = function ({ products }) {
     </div>
   );
 };
+const ProductPropType = PropTypes.shape(productItem);
 Products.propTypes = {
-  products: PropTypes.instanceOf(Array),
+  products: PropTypes.arrayOf(ProductPropType),
 };
 Products.defaultProps = {
-  products: PropTypes.instanceOf(Array),
+  products: PropTypes.arrayOf(ProductPropType),
 };
 
 export default Products;

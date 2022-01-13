@@ -16,7 +16,7 @@ const Paginator = function ({
     pages.push(i);
   }
   const portionSize = 2;
-  const portionCount = Math.ceil(pagesCount / portionSize);
+  const portionCount = Math.ceil(pagesCount / portionSize) - 1;
   const leftPortionPageNumber = (portionNumber - 1) * portionSize + 1;
   const rightPortionPageNumber = portionNumber * portionSize + 2;
   return (

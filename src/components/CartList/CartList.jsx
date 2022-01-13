@@ -2,6 +2,7 @@ import React from "react";
 import * as PropTypes from "prop-types";
 import styles from "./Cart.module.css";
 import CartItem from "./CartItem/CartItem";
+import { cartItem } from "../../utils/constants";
 
 const CartList = function ({
   totalPrice,
@@ -49,15 +50,16 @@ const CartList = function ({
     </div>
   );
 };
+const CartPropType = PropTypes.shape(cartItem);
 CartList.propTypes = {
-  cartItems: PropTypes.instanceOf(Array),
+  cartItems: PropTypes.arrayOf(CartPropType),
   totalPrice: PropTypes.number,
   deleteAllProductsByType: PropTypes.func,
   deleteProductFromCart: PropTypes.func,
   addProductToCart: PropTypes.func,
 };
 CartList.defaultProps = {
-  cartItems: PropTypes.instanceOf(Array),
+  cartItems: PropTypes.arrayOf(CartPropType),
   totalPrice: PropTypes.number,
   deleteAllProductsByType: PropTypes.func,
   deleteProductFromCart: PropTypes.func,

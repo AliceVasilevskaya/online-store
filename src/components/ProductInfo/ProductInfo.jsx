@@ -4,6 +4,7 @@ import * as PropTypes from "prop-types";
 import styles from "./ProductInfo.module.css";
 import Button from "../../ui-kit/Button/Button";
 import Preloader from "../../ui-kit/Preloader/Preloader";
+import { productItem } from "../../utils/constants";
 
 const ProductInfo = function ({ product, addProductToCart }) {
   const { name, origin, createdAt, updatedAt, price } = product;
@@ -42,25 +43,11 @@ const ProductInfo = function ({ product, addProductToCart }) {
   );
 };
 ProductInfo.propTypes = {
-  product: PropTypes.shape({
-    id: PropTypes.string,
-    name: PropTypes.string,
-    price: PropTypes.number,
-    origin: PropTypes.string,
-    createdAt: PropTypes.string,
-    updatedAt: PropTypes.string,
-  }),
+  product: PropTypes.shape(productItem),
   addProductToCart: PropTypes.func,
 };
 ProductInfo.defaultProps = {
-  product: PropTypes.shape({
-    id: PropTypes.string,
-    name: PropTypes.string,
-    price: PropTypes.number,
-    origin: PropTypes.string,
-    createdAt: PropTypes.string,
-    updatedAt: PropTypes.string,
-  }),
+  product: PropTypes.shape(productItem),
   addProductToCart: PropTypes.func,
 };
 export default ProductInfo;
