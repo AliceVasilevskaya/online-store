@@ -63,7 +63,7 @@ CartItem.propTypes = {
   addProductToCart: PropTypes.func,
 };
 CartItem.defaultProps = {
-  item: [],
+  item: undefined,
   deleteAllProductsByType: () => {},
   deleteProductFromCart: () => {},
   addProductToCart: () => {},
