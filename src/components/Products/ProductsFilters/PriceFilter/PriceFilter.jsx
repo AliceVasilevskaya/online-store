@@ -51,10 +51,10 @@ PriceFilter.propTypes = {
   onFilterChange: PropTypes.func,
 };
 PriceFilter.defaultProps = {
-  minPrice: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  maxPrice: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  onMaxPriceChange: PropTypes.func,
-  onMinPriceChange: PropTypes.func,
-  onFilterChange: PropTypes.func,
+  minPrice: 0,
+  maxPrice: 10000,
+  onMaxPriceChange: () => {},
+  onMinPriceChange: () => {},
+  onFilterChange: () => {},
 };
 export default PriceFilter;

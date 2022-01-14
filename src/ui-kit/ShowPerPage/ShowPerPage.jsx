@@ -21,7 +21,7 @@ ShowPerPage.propTypes = {
   changePerPage: PropTypes.func,
 };
 ShowPerPage.defaultProps = {
-  perPage: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  changePerPage: PropTypes.func,
+  perPage: 10,
+  changePerPage: () => {},
 };
 export default ShowPerPage;

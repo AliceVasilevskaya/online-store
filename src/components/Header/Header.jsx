@@ -27,7 +27,7 @@ Header.propTypes = {
   pathname: PropTypes.string,
 };
 Header.defaultProps = {
-  totalPrice: PropTypes.number,
-  pathname: PropTypes.string,
+  totalPrice: 0,
+  pathname: "",
 };
 export default Header;

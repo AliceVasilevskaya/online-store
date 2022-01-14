@@ -63,9 +63,16 @@ CartItem.propTypes = {
   addProductToCart: PropTypes.func,
 };
 CartItem.defaultProps = {
-  item: PropTypes.shape(cartItem),
-  deleteAllProductsByType: PropTypes.func,
-  deleteProductFromCart: PropTypes.func,
-  addProductToCart: PropTypes.func,
+  item: [
+    {
+      id: 0,
+      name: "",
+      price: 0,
+      quantity: 0,
+    },
+  ],
+  deleteAllProductsByType: () => {},
+  deleteProductFromCart: () => {},
+  addProductToCart: () => {},
 };
 export default CartItem;

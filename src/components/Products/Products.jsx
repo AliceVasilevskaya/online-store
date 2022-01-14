@@ -1,7 +1,7 @@
 import React from "react";
 import * as PropTypes from "prop-types";
 import ProductItemContainer from "./ProductItem/ProductItemContainer";
-import { productItem } from "../../utils/constants";
+import { productItem, productItemDefault } from "../../utils/constants";
 
 const Products = function ({ products }) {
   return (
@@ -17,7 +17,7 @@ Products.propTypes = {
   products: PropTypes.arrayOf(ProductPropType),
 };
 Products.defaultProps = {
-  products: PropTypes.arrayOf(ProductPropType),
+  products: [productItemDefault],
 };
 
 export default Products;

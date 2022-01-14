@@ -68,6 +68,6 @@ ProductsFiltersContainer.propTypes = {
   onPageClick: PropTypes.func,
 };
 ProductsFiltersContainer.defaultProps = {
-  onPageClick: PropTypes.func,
+  onPageClick: () => {},
 };
 export default ProductsFiltersContainer;

@@ -19,6 +19,6 @@ CartIcon.propTypes = {
   totalPrice: PropTypes.number,
 };
 CartIcon.defaultProps = {
-  totalPrice: PropTypes.number,
+  totalPrice: 0,
 };
 export default CartIcon;

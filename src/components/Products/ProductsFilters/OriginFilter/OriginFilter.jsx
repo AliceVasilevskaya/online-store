@@ -34,9 +34,9 @@ OriginFilter.propTypes = {
   onFilterChange: PropTypes.func,
 };
 OriginFilter.defaultProps = {
-  origins: PropTypes.instanceOf(Array),
-  onOriginChange: PropTypes.func,
-  selectedOrigins: PropTypes.instanceOf(Array),
-  onFilterChange: PropTypes.func,
+  origins: [],
+  onOriginChange: () => {},
+  selectedOrigins: [],
+  onFilterChange: () => {},
 };
 export default OriginFilter;

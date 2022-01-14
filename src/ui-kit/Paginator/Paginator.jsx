@@ -65,7 +65,7 @@ const Paginator = function ({
             );
           })}
 
-        {portionNumber !== portionCount && (
+        {portionNumber !== portionCount && pagesCount > 4 && (
           <>
             <Dots />
             <Arrow
@@ -77,7 +77,7 @@ const Paginator = function ({
             />
           </>
         )}
-        {currentPage < pagesCount && (
+        {currentPage < pagesCount && pagesCount > 4 && (
           <Arrow
             currentPage={currentPage}
             whichPortionNumber={rightPortionPageNumber}
@@ -133,13 +133,13 @@ Arrow.propTypes = {
   className: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
 };
 Arrow.defaultProps = {
-  currentPage: PropTypes.number,
-  whichPortionNumber: PropTypes.number,
-  onPageClick: PropTypes.func,
-  modifiedCurrentPage: PropTypes.number,
-  portionNumber: PropTypes.number,
-  text: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  className: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  currentPage: 1,
+  whichPortionNumber: 1,
+  onPageClick: () => {},
+  modifiedCurrentPage: 0,
+  portionNumber: 1,
+  text: "",
+  className: "",
 };
 Paginator.propTypes = {
   totalItems: PropTypes.number,
@@ -149,10 +149,10 @@ Paginator.propTypes = {
   portionNumber: PropTypes.number,
 };
 Paginator.defaultProps = {
-  totalItems: PropTypes.number,
-  perPage: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  currentPage: PropTypes.number,
-  onPageClick: PropTypes.func,
-  portionNumber: PropTypes.number,
+  totalItems: 1,
+  perPage: 10,
+  currentPage: 1,
+  onPageClick: () => {},
+  portionNumber: 1,
 };
 export default Paginator;

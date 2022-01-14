@@ -5,7 +5,7 @@ import * as PropTypes from "prop-types";
 import styles from "./ProductItem.module.css";
 import Button from "../../../ui-kit/Button/Button";
 import ROUTES from "../../../routes/pathsOfRoutes";
-import { productItem } from "../../../utils/constants";
+import { productItem, productItemDefault } from "../../../utils/constants";
 
 const ProductItem = function ({ item, addProductToCart }) {
   const { id, name, origin, createdAt, updatedAt, price } = item;
@@ -33,7 +33,7 @@ ProductItem.propTypes = {
   addProductToCart: PropTypes.func,
 };
 ProductItem.defaultProps = {
-  item: PropTypes.shape(productItem),
-  addProductToCart: PropTypes.func,
+  item: productItemDefault,
+  addProductToCart: () => {},
 };
 export default ProductItem;

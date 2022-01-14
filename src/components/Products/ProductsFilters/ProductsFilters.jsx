@@ -55,14 +55,14 @@ ProductsFilters.propTypes = {
   onFilterClear: PropTypes.func,
 };
 ProductsFilters.defaultProps = {
-  origins: PropTypes.instanceOf(Array),
-  onOriginChange: PropTypes.func,
-  selectedOrigins: PropTypes.instanceOf(Array),
-  onFilterChange: PropTypes.func,
-  minPrice: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  maxPrice: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  onMaxPriceChange: PropTypes.func,
-  onMinPriceChange: PropTypes.func,
-  onFilterClear: PropTypes.func,
+  origins: [],
+  onOriginChange: () => {},
+  selectedOrigins: [],
+  onFilterChange: () => {},
+  minPrice: 0,
+  maxPrice: 10000,
+  onMaxPriceChange: () => {},
+  onMinPriceChange: () => {},
+  onFilterClear: () => {},
 };
 export default ProductsFilters;
