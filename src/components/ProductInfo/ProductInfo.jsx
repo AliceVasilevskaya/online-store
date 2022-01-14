@@ -4,7 +4,7 @@ import * as PropTypes from "prop-types";
 import styles from "./ProductInfo.module.css";
 import Button from "../../ui-kit/Button/Button";
 import Preloader from "../../ui-kit/Preloader/Preloader";
-import { productItem, productItemDefault } from "../../utils/constants";
+import { productItem } from "../../utils/constants";
 
 const ProductInfo = function ({ product, addProductToCart }) {
   const { name, origin, createdAt, updatedAt, price } = product;
@@ -47,7 +47,7 @@ ProductInfo.propTypes = {
   addProductToCart: PropTypes.func,
 };
 ProductInfo.defaultProps = {
-  product: productItemDefault,
+  product: undefined,
   addProductToCart: () => {},
 };
 export default ProductInfo;

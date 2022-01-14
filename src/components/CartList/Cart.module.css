@@ -50,7 +50,7 @@
     color: black;
     text-shadow: 0 0 4px aquamarine;
 }
-button{
+.product button{
     width: 25px;
     height: 25px;
     background-color: #E1E8EE;
@@ -58,7 +58,7 @@ button{
     border: none;
     cursor: pointer;
 }
-button:focus,
+.product button:focus,
 input:focus {
     outline:0;
 }

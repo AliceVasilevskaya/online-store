@@ -59,7 +59,7 @@ CartList.propTypes = {
   addProductToCart: PropTypes.func,
 };
 CartList.defaultProps = {
-  cartItems: { id: 0, name: "", price: 0, quantity: 0 },
+  cartItems: [],
   totalPrice: 0,
   deleteAllProductsByType: () => {},
   deleteProductFromCart: () => {},

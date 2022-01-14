@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import * as PropTypes from "prop-types";
 import ProductItem from "./ProductItem";
 import { addProductToCart } from "../../../store/cart/cart-async-actions";
-import { productItem, productItemDefault } from "../../../utils/constants";
+import { productItem } from "../../../utils/constants";
 
 const ProductItemContainer = function ({ item }) {
   const dispatch = useDispatch();
@@ -16,6 +16,6 @@ ProductItemContainer.propTypes = {
   item: PropTypes.shape(productItem),
 };
 ProductItemContainer.defaultProps = {
-  item: productItemDefault,
+  item: undefined,
 };
 export default ProductItemContainer;

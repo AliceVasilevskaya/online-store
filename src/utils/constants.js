@@ -1,13 +1,5 @@
 import * as PropTypes from "prop-types";
 
-const productItemDefault = {
-  id: "",
-  name: 0,
-  price: 0,
-  origin: "",
-  createdAt: "",
-  updatedAt: "",
-};
 const productItem = {
   id: PropTypes.string,
   name: PropTypes.string,
@@ -24,4 +16,4 @@ const cartItem = {
   quantity: PropTypes.number,
 };
 
-export { productItemDefault, productItem, cartItem };
+export { productItem, cartItem };
