@@ -1,0 +1,27 @@
+.slider {
+    width: 230px;
+}
+.applyFilter {
+    width: 30px;
+}
+.originFilter {
+    width: 200px;
+}
+.priceFilter {
+    width: 200px;
+}
+.priceFilter input {
+    width:70px;
+}
+.clearAllFilters {
+    vertical-align: middle;
+    width: 90px;
+    margin: 10px 0 20px 0;
+    height: 25px;
+    text-align: center;
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    cursor: pointer;
+}

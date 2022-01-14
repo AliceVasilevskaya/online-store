@@ -1,21 +1,18 @@
 import React from "react";
 import "./App.css";
+import { Provider } from "react-redux";
 import HeaderContainer from "./components/Header/HeaderContainer";
-import { ProductsProvider } from "./context/products/products-context";
-import { CartContextProvider } from "./context/cart/cart-context";
-
 import routes from "./routes/routes";
+import store from "./store/redux";
 
 const App = function () {
   return (
-    <div className="app-wrapper">
-      <ProductsProvider>
-        <CartContextProvider>
-          <HeaderContainer />
-          <div className="app-wrapper-content">{routes}</div>
-        </CartContextProvider>
-      </ProductsProvider>
-    </div>
+    <Provider store={store}>
+      <div className="app-wrapper">
+        <HeaderContainer />
+        <div className="app-wrapper-content">{routes}</div>
+      </div>
+    </Provider>
   );
 };
 

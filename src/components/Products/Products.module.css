@@ -1,0 +1,19 @@
+.productsContainer {
+    display: inline-flex;
+    width: 1000px;
+    margin: 0 auto;
+}
+.filterContainer{
+    margin: 5px;
+    padding: 50px 20px 20px 30px;
+    width: 250px;
+    align-content: flex-start;
+    border: 1px solid black;
+}
+.products{
+    margin: 5px;
+    padding: 20px;
+    width: 750px;
+    align-content: flex-end;
+    border: 1px solid black;
+}

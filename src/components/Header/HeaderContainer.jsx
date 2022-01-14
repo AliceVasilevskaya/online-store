@@ -1,12 +1,12 @@
 import React from "react";
 import { useLocation } from "react-router";
 import Header from "./Header";
-import { useCart } from "../../context/cart/cart-context";
+import CartSelectors from "../../store/cart/cart-selectors";
 
 const HeaderContainer = function () {
-  const { state } = useCart();
+  const { totalPrice } = CartSelectors();
   const params = useLocation();
-  return <Header totalPrice={state.totalPrice} params={params} />;
+  return <Header totalPrice={totalPrice} pathname={params.pathname} />;
 };
 
 export default HeaderContainer;

@@ -1,44 +1,35 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router";
-import productApi from "../../api/product-api";
-import { useProducts } from "../../context/products/products-context";
+import { useDispatch } from "react-redux";
 import ProductInfo from "./ProductInfo";
-import { actions } from "../../context/products/products-reducer";
-import { useCart } from "../../context/cart/cart-context";
 import Preloader from "../../ui-kit/Preloader/Preloader";
+import { setProduct } from "../../store/products/products-actions";
+import ProductsSelectors from "../../store/products/products-selectors";
+import { getProduct } from "../../store/products/products-async-actions";
+import { addProductToCart } from "../../store/cart/cart-async-actions";
 
 const ProductInfoContainer = function () {
-  const {
-    state: { product, isFetching },
-    dispatch,
-  } = useProducts();
-  const { addProductToCart } = useCart();
+  const { isFetching, product, error } = ProductsSelectors();
+  const dispatch = useDispatch();
   const params = useParams();
   const { productId } = params;
 
   useEffect(() => {
-    (async function () {
-      try {
-        dispatch(actions.toggleIsFetching(true));
-        const data = await productApi.getProductItem(productId);
-        dispatch(actions.setProduct(data));
-      } catch (error) {
-        throw new Error(error);
-      } finally {
-        dispatch(actions.toggleIsFetching(false));
-      }
-    })();
+    dispatch(getProduct({ productId }));
     return () => {
-      dispatch(actions.setProduct({}));
+      dispatch(setProduct({}));
     };
   }, []);
-
+  const addProduct = (productItem, quantity) => {
+    dispatch(addProductToCart(productItem, quantity));
+  };
   return (
     <div>
+      {error && new Error(error.message)}
       {isFetching ? (
         <Preloader />
       ) : (
-        <ProductInfo product={product} addProductToCart={addProductToCart} />
+        <ProductInfo product={product} addProductToCart={addProduct} />
       )}
     </div>
   );

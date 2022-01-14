@@ -1,8 +1,10 @@
 import React from "react";
 import moment from "moment";
+import * as PropTypes from "prop-types";
 import styles from "./ProductInfo.module.css";
 import Button from "../../ui-kit/Button/Button";
 import Preloader from "../../ui-kit/Preloader/Preloader";
+import { productItem } from "../../utils/constants";
 
 const ProductInfo = function ({ product, addProductToCart }) {
   const { name, origin, createdAt, updatedAt, price } = product;
@@ -31,7 +33,7 @@ const ProductInfo = function ({ product, addProductToCart }) {
           <div className={styles.right}>
             <div>Price: ${price}</div>
             <Button
-              children="Add to Cart"
+              child="Add to Cart"
               onClick={() => addProductToCart(product, 1)}
             />
           </div>
@@ -39,5 +41,13 @@ const ProductInfo = function ({ product, addProductToCart }) {
       )}
     </div>
   );
+};
+ProductInfo.propTypes = {
+  product: PropTypes.shape(productItem),
+  addProductToCart: PropTypes.func,
+};
+ProductInfo.defaultProps = {
+  product: undefined,
+  addProductToCart: () => {},
 };
 export default ProductInfo;

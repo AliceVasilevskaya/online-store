@@ -2,13 +2,13 @@
   display: grid;
   width: 1000px;
   grid-template-areas:
-    "h"
-    "c";
+    "header"
+    "main";
   margin: 0 auto;
   grid-gap: 2px;
 }
 .app-wrapper-content {
-  grid-area: c;
+  grid-area: main;
   background-color: aliceblue;
   padding: 20px;
 }

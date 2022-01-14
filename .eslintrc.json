@@ -17,11 +17,12 @@
   },
   "plugins": ["react"],
   "rules": {
-    "prettier/prettier": ["error", {
-      "endOfLine":"auto"
-    }],
-    "func-names": "off",
-    "react/no-children-prop": "off",
-    "react/prop-types": "off"
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
+    "func-names": ["error", "as-needed"]
   }
 }
