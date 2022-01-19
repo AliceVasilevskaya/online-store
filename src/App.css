@@ -1,6 +1,5 @@
 .app-wrapper {
   display: grid;
-  width: 1000px;
   grid-template-areas:
     "header"
     "main";
@@ -9,6 +8,6 @@
 }
 .app-wrapper-content {
   grid-area: main;
+  padding: 30px;
   background-color: aliceblue;
-  padding: 20px;
 }

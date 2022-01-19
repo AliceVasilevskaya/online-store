@@ -1,10 +1,10 @@
 import React from "react";
 import classNames from "classnames";
 import * as PropTypes from "prop-types";
-import s from "./Button.module.css";
+import styles from "./Button.module.css";
 
 const Button = function ({ child, onClick, active, className }) {
-  const classes = classNames(s.button, className, { active });
+  const classes = classNames(styles.button, className, { active });
   return (
     <button type="button" className={classes} onClick={onClick}>
       {child}

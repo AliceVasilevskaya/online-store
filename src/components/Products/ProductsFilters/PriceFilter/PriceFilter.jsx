@@ -9,20 +9,20 @@ const PriceFilter = function ({
   maxPrice,
   onMaxPriceChange,
   onMinPriceChange,
-  onFilterChange,
+  updateData,
 }) {
   return (
     <div className={s.priceFilter}>
       <input
         value={Number(minPrice)}
         onChange={(e) => onMinPriceChange(e.target.value.replace(/\D+/g, ""))}
-        onBlur={onFilterChange}
+        onBlur={() => updateData(1, 1)}
       />
       &nbsp;-&nbsp;
       <input
         value={Number(maxPrice)}
         onChange={(e) => onMaxPriceChange(e.target.value.replace(/\D+/g, ""))}
-        onBlur={onFilterChange}
+        onBlur={() => updateData(1, 1)}
       />
       &nbsp;$&nbsp;
       <div className={s.slider}>
@@ -48,13 +48,13 @@ PriceFilter.propTypes = {
   maxPrice: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onMaxPriceChange: PropTypes.func,
   onMinPriceChange: PropTypes.func,
-  onFilterChange: PropTypes.func,
+  updateData: PropTypes.func,
 };
 PriceFilter.defaultProps = {
   minPrice: 0,
   maxPrice: 10000,
   onMaxPriceChange: () => {},
   onMinPriceChange: () => {},
-  onFilterChange: () => {},
+  updateData: () => {},
 };
 export default PriceFilter;

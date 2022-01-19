@@ -1,4 +1,4 @@
-.productInfoContainer {
+.productItemContainer {
   display: flex;
   margin: 10px;
   padding: 10px;
@@ -18,6 +18,7 @@
 }
 
 .origin {
+  text-transform: uppercase;
   margin: 0 0 20px 0;
 }
 
@@ -29,7 +30,7 @@
   align-content: flex-end;
 }
 
-.productInfoContainer a {
+.productItemContainer a {
   color: black;
   outline: none;
   text-decoration: none;
@@ -37,7 +38,60 @@
   background-color: transparent;
 }
 
-.productInfoContainer a:hover {
+.productItemContainer a:hover {
   color: black;
   text-shadow: 0 0 4px aquamarine;
+}
+.editButton button,
+.deleteButton button {
+  width: 120px;
+  height: 25px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+}
+.button {
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  background: aquamarine;
+  color: black;
+  text-transform: uppercase;
+  border: none;
+  padding: 15px 0 15px 0;
+  margin-top: 5px;
+  font-size: 10px;
+  font-weight: 100;
+  appearance: none;
+  border-radius: 4px;
+  width: 130px;
+  height: 20px;
+  justify-content: center;
+  align-items: center;
+}
+.deleteButton {
+  padding: 10px;
+  color: white;
+  background: black;
+}
+.deleteButton:hover:not(:active) {
+  box-shadow: 0 0 3px aquamarine, 0 1px 1px 1px aquamarine,
+    0 -1px 1px 1px aquamarine;
+}
+.editButton:hover:not(:active) {
+  box-shadow: 0 0 3px rgba(47, 79, 79, 0.5), 0 1px 1px rgba(47, 79, 79, 0.5),
+    0 -1px 1px 1px rgba(47, 79, 79, 0.5);
+}
+.productInfo {
+  width: 60%;
+  font-size: 20px;
+  font-weight: 200;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+}
+.productInfo button {
+  width: 130px;
 }

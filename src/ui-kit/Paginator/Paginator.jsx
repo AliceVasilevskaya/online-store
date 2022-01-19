@@ -42,7 +42,7 @@ const Paginator = function ({
               text={1}
               className={s.numb}
             />
-            <Dots />
+            {pagesCount > 4 && <Dots />}
           </>
         )}
 
@@ -56,7 +56,7 @@ const Paginator = function ({
                 className={cn({ [s.active]: currentPage === p }, s.numb)}
                 key={p}
                 onClick={() => {
-                  onPageClick(p);
+                  onPageClick(p, null);
                 }}
                 role="presentation"
               >

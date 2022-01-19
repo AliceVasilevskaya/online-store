@@ -7,7 +7,7 @@ const OriginFilter = function ({
   origins,
   onOriginChange,
   selectedOrigins,
-  onFilterChange,
+  updateData,
 }) {
   const originsWithAll = origins.filter((x) => x.label === "All");
   const options = selectedOrigins.some((el) => {
@@ -23,7 +23,7 @@ const OriginFilter = function ({
       defaultValue={selectedOrigins}
       isMulti
       onChange={(e) => onOriginChange(e)}
-      onBlur={onFilterChange}
+      onBlur={() => updateData(1)}
     />
   );
 };
@@ -31,12 +31,12 @@ OriginFilter.propTypes = {
   origins: PropTypes.instanceOf(Array),
   onOriginChange: PropTypes.func,
   selectedOrigins: PropTypes.instanceOf(Array),
-  onFilterChange: PropTypes.func,
+  updateData: PropTypes.func,
 };
 OriginFilter.defaultProps = {
   origins: [],
   onOriginChange: () => {},
   selectedOrigins: [],
-  onFilterChange: () => {},
+  updateData: () => {},
 };
 export default OriginFilter;

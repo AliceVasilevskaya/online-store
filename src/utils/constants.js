@@ -15,5 +15,10 @@ const cartItem = {
   price: PropTypes.number,
   quantity: PropTypes.number,
 };
+const ProductValues = {
+  name: PropTypes.string,
+  price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  origin: PropTypes.instanceOf(Object),
+};
 
-export { productItem, cartItem };
+export { productItem, cartItem, ProductValues };

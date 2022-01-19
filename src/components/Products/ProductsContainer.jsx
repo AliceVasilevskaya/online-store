@@ -1,60 +1,87 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import PropTypes from "prop-types";
 import styles from "./Products.module.css";
-import Products from "./Products";
-import Preloader from "../../ui-kit/Preloader/Preloader";
 import Paginator from "../../ui-kit/Paginator/Paginator";
 import ShowPerPage from "../../ui-kit/ShowPerPage/ShowPerPage";
 import ProductsFiltersContainer from "./ProductsFilters/ProductsFiltersContainer";
 import ProductsSelectors from "../../store/products/products-selectors";
-import {
-  getItems,
-  getProductsOrigins,
-} from "../../store/products/products-async-actions";
+import { getItems } from "../../store/products/products-async-actions";
 import { setPortionNumber } from "../../store/products/products-slice";
+import Products from "./Products";
 
-const ProductsContainer = function () {
-  const { totalItems, perPage, page, items, isFetching, portionNumber, error } =
+const ProductsContainer = function ({
+  isEditable,
+  onDeleteClick,
+  onProductItemButtonClick,
+  productItemButtonName,
+}) {
+  const { totalItems, perPage, page, portionNumber, error, items, origins } =
     ProductsSelectors();
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getProductsOrigins());
-    dispatch(getItems({ page: 1, perPage }));
-  }, []);
-  const onPageClick = (currentPage, number) => {
-    if (number) {
-      dispatch(setPortionNumber(number));
+
+  const onPageClick = (pageNumber, portion) => {
+    if (portion) {
+      dispatch(setPortionNumber(portion));
     }
-    dispatch(getItems({ page: currentPage, perPage }));
+    dispatch(getItems({ page: pageNumber, perPage, isEditable }));
+  };
+  const updateData = (pageNumber, portion) => {
+    onPageClick(pageNumber, portion);
+    dispatch(getItems({ page: pageNumber, perPage, isEditable }));
   };
   const changePerPage = (event) => {
     onPageClick(1, 1);
-    dispatch(getItems({ page: 1, perPage: event.target.value }));
+    dispatch(getItems({ page: 1, perPage: event.target.value, isEditable }));
   };
+
+  useEffect(() => {
+    updateData(1, 1);
+  }, []);
+
   return (
-    <div>
+    <div className={styles.productsContent}>
       {error && new Error(error.message)}
-      {isFetching ? (
-        <Preloader />
-      ) : (
-        <div className={styles.productsContainer}>
-          <div className={styles.filterContainer}>
-            <ProductsFiltersContainer onPageClick={onPageClick} />
-          </div>
-          <div className={styles.products}>
-            <Paginator
-              portionNumber={portionNumber}
-              onPageClick={onPageClick}
-              totalItems={totalItems}
-              perPage={perPage}
-              currentPage={page}
-            />
-            <ShowPerPage perPage={perPage} changePerPage={changePerPage} />
-            <Products products={items} />
-          </div>
+      <div className={styles.productsContainer}>
+        <div className={styles.filterContainer}>
+          <ProductsFiltersContainer updateData={updateData} />
         </div>
-      )}
+        <div className={styles.products}>
+          <Paginator
+            isEditable={isEditable}
+            portionNumber={portionNumber}
+            totalItems={totalItems}
+            perPage={perPage}
+            currentPage={page}
+            onPageClick={onPageClick}
+          />
+          <ShowPerPage perPage={perPage} changePerPage={changePerPage} />
+          <Products
+            updateData={updateData}
+            isEditable={isEditable}
+            onProductItemButtonClick={onProductItemButtonClick}
+            currentPage={page}
+            origins={origins}
+            items={items}
+            productItemButtonName={productItemButtonName}
+            onDeleteClick={onDeleteClick}
+          />
+        </div>
+      </div>
     </div>
   );
+};
+
+ProductsContainer.propTypes = {
+  onDeleteClick: PropTypes.func,
+  isEditable: PropTypes.bool,
+  onProductItemButtonClick: PropTypes.func,
+  productItemButtonName: PropTypes.string,
+};
+ProductsContainer.defaultProps = {
+  onDeleteClick: undefined,
+  isEditable: null,
+  onProductItemButtonClick: () => {},
+  productItemButtonName: "",
 };
 export default ProductsContainer;

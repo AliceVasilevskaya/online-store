@@ -10,7 +10,7 @@ const ProductsFilters = function ({
   maxPrice,
   onMaxPriceChange,
   onMinPriceChange,
-  onFilterChange,
+  updateData,
   origins,
   onOriginChange,
   selectedOrigins,
@@ -23,16 +23,16 @@ const ProductsFilters = function ({
         maxPrice={maxPrice}
         onMaxPriceChange={onMaxPriceChange}
         onMinPriceChange={onMinPriceChange}
-        onFilterChange={onFilterChange}
+        updateData={updateData}
       />
       <OriginFilter
-        onFilterChange={onFilterChange}
+        updateData={updateData}
         origins={origins}
         onOriginChange={onOriginChange}
         selectedOrigins={selectedOrigins}
       />
 
-      <Button child="Apply filter" onClick={onFilterChange} />
+      <Button child="Apply filter" onClick={() => updateData(1)} />
       <button
         className={s.clearAllFilters}
         type="button"
@@ -47,22 +47,22 @@ ProductsFilters.propTypes = {
   origins: PropTypes.instanceOf(Array),
   onOriginChange: PropTypes.func,
   selectedOrigins: PropTypes.instanceOf(Array),
-  onFilterChange: PropTypes.func,
   minPrice: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   maxPrice: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onMaxPriceChange: PropTypes.func,
   onMinPriceChange: PropTypes.func,
   onFilterClear: PropTypes.func,
+  updateData: PropTypes.func,
 };
 ProductsFilters.defaultProps = {
   origins: [],
   onOriginChange: () => {},
   selectedOrigins: [],
-  onFilterChange: () => {},
   minPrice: 0,
   maxPrice: 10000,
   onMaxPriceChange: () => {},
   onMinPriceChange: () => {},
   onFilterClear: () => {},
+  updateData: () => {},
 };
 export default ProductsFilters;
