@@ -48,7 +48,6 @@ const ProductsContainer = function ({
         </div>
         <div className={styles.products}>
           <Paginator
-            isEditable={isEditable}
             portionNumber={portionNumber}
             totalItems={totalItems}
             perPage={perPage}

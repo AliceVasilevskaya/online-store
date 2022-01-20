@@ -3,6 +3,7 @@ import React from "react";
 import * as PropTypes from "prop-types";
 import styles from "../Cart.module.css";
 import { cartItem } from "../../../utils/constants";
+import ROUTES from "../../../routes/pathsOfRoutes";
 
 const CartItem = function ({
   item,
@@ -14,7 +15,7 @@ const CartItem = function ({
   return (
     <tr className={styles.product}>
       <td className={styles.productName}>
-        <Link to={`/products/${id}`}>{name}</Link>
+        <Link to={`${ROUTES.PRODUCTS}/${id}`}>{name}</Link>
       </td>
       <td>{`$${price}`}</td>
       <td>
@@ -43,7 +44,7 @@ const CartItem = function ({
         </span>
       </td>
       <td className={styles.total}>${price * quantity}</td>
-      <td>
+      <td className={styles.delete}>
         <button
           type="button"
           onClick={() => {

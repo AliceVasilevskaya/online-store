@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useParams } from "react-router";
+import { useLocation } from "react-router";
 import Header from "./Header";
 import CartSelectors from "../../store/cart/cart-selectors";
 import { setOpen } from "../../store/products/products-slice";
@@ -10,7 +10,7 @@ import { getProductsOrigins } from "../../store/products/products-async-actions"
 const HeaderContainer = function () {
   const { totalPrice } = CartSelectors();
   const dispatch = useDispatch();
-  const params = useParams();
+  const params = useLocation();
   useEffect(() => {
     dispatch(getProductsOrigins());
   }, []);

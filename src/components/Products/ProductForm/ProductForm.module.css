@@ -11,11 +11,11 @@
 }
 .input{
 }
-p {
+.form p {
     color: #bf1650;
 }
 
-p::before {
+.form p::before {
     display: inline;
     content: "⚠ ";
 }

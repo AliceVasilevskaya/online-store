@@ -96,6 +96,7 @@ const ProductForm = function ({
         </section>
         <div className={styles.buttons}>
           <button
+            disabled={isFetching}
             className={`${styles.buttonBlack} ${styles.button}`}
             type="button"
             onClick={() => {

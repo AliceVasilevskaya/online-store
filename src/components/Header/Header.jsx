@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import * as PropTypes from "prop-types";
 import styles from "./Header.module.css";
 import CartIcon from "../CartIcon/CartIcon";
@@ -10,8 +10,15 @@ const Header = function ({ totalPrice, pathname, onAddProductClick }) {
     <header className={styles.header}>
       <div className={styles.container}>
         <div className={styles.body}>
-          <Link to={ROUTES.PRODUCTS}>All products</Link>
-          <Link to={ROUTES.MY_PRODUCTS}> My products</Link>
+          <NavLink to={ROUTES.PRODUCTS} activeClassName={styles.active}>
+            All products
+          </NavLink>
+          <NavLink to={ROUTES.MY_PRODUCTS} activeClassName={styles.active}>
+            My products
+          </NavLink>
+          <NavLink to={ROUTES.ORDERS} activeClassName={styles.active}>
+            My orders
+          </NavLink>
           <button
             className={styles.button}
             type="button"

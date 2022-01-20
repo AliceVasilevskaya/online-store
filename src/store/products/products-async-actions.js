@@ -55,14 +55,14 @@ export const getProductsOrigins = createAsyncThunk(
 export const addProduct = createAsyncThunk(
   "products/addProduct",
   async ({ data }) => {
-    const a = {
+    const product = {
       product: {
         name: data.name,
         price: data.price,
         origin: data.origin.value,
       },
     };
-    await productsApi.addNewProduct(a);
+    await productsApi.addNewProduct(product);
   }
 );
 

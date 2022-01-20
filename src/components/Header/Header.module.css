@@ -52,7 +52,6 @@
 a.active {
   color: aquamarine;
   text-shadow: 0 0 4px rgb(47, 79, 79);
-  font-size: 40px;
 }
 
 a:hover {

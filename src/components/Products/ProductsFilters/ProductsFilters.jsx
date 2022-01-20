@@ -32,7 +32,7 @@ const ProductsFilters = function ({
         selectedOrigins={selectedOrigins}
       />
 
-      <Button child="Apply filter" onClick={() => updateData(1)} />
+      <Button child="Apply filter" onClick={() => updateData(1, 1)} />
       <button
         className={s.clearAllFilters}
         type="button"
