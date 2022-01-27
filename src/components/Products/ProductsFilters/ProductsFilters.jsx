@@ -4,6 +4,7 @@ import OriginFilter from "./OriginFilter/OriginFilter";
 import PriceFilter from "./PriceFilter/PriceFilter";
 import s from "./ProductsFilters.module.css";
 import Button from "../../../ui-kit/Button/Button";
+import { firstPage } from "../../../utils/constants";
 
 const ProductsFilters = function ({
   minPrice,
@@ -32,7 +33,7 @@ const ProductsFilters = function ({
         selectedOrigins={selectedOrigins}
       />
 
-      <Button child="Apply filter" onClick={() => updateData(1, 1)} />
+      <Button child="Apply filter" onClick={() => updateData(firstPage)} />
       <button
         className={s.clearAllFilters}
         type="button"
@@ -44,9 +45,19 @@ const ProductsFilters = function ({
   );
 };
 ProductsFilters.propTypes = {
-  origins: PropTypes.instanceOf(Array),
+  origins: PropTypes.arrayOf(
+    PropTypes.shape({
+      displayName: PropTypes.string,
+      value: PropTypes.string,
+    })
+  ),
   onOriginChange: PropTypes.func,
-  selectedOrigins: PropTypes.instanceOf(Array),
+  selectedOrigins: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string,
+      value: PropTypes.string,
+    })
+  ),
   minPrice: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   maxPrice: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onMaxPriceChange: PropTypes.func,

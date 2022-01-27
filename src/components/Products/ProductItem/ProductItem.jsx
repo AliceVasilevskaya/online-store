@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import * as PropTypes from "prop-types";
 import styles from "./ProductItem.module.css";
 import ROUTES from "../../../routes/pathsOfRoutes";
-import { productItem } from "../../../utils/constants";
+import { oneItem, productItem } from "../../../utils/constants";
 
 const ProductItem = function ({
   product,
@@ -51,7 +51,7 @@ const ProductItem = function ({
               onButtonClick({
                 val: values,
                 product,
-                quantity: 1,
+                quantity: oneItem,
                 editable: isEditable,
               });
             }}
@@ -79,7 +79,12 @@ const ProductItem = function ({
 };
 ProductItem.propTypes = {
   onDeleteClick: PropTypes.func,
-  origins: PropTypes.instanceOf(Array),
+  origins: PropTypes.arrayOf(
+    PropTypes.shape({
+      displayName: PropTypes.string,
+      value: PropTypes.string,
+    })
+  ),
   buttonName: PropTypes.string,
   onButtonClick: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
   updateData: PropTypes.func,

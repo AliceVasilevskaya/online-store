@@ -9,6 +9,7 @@ import ProductsSelectors from "../../store/products/products-selectors";
 import { getItems } from "../../store/products/products-async-actions";
 import { setPortionNumber } from "../../store/products/products-slice";
 import Products from "./Products";
+import { firstPage } from "../../utils/constants";
 
 const ProductsContainer = function ({
   isEditable,
@@ -16,8 +17,15 @@ const ProductsContainer = function ({
   onProductItemButtonClick,
   productItemButtonName,
 }) {
-  const { totalItems, perPage, page, portionNumber, error, items, origins } =
-    ProductsSelectors();
+  const {
+    totalItems,
+    perPage,
+    currentPage,
+    portionNumber,
+    error,
+    items,
+    origins,
+  } = ProductsSelectors();
   const dispatch = useDispatch();
 
   const onPageClick = (pageNumber, portion) => {
@@ -26,17 +34,19 @@ const ProductsContainer = function ({
     }
     dispatch(getItems({ page: pageNumber, perPage, isEditable }));
   };
-  const updateData = (pageNumber, portion) => {
-    onPageClick(pageNumber, portion);
+  const updateData = (pageNumber) => {
+    onPageClick(pageNumber);
     dispatch(getItems({ page: pageNumber, perPage, isEditable }));
   };
   const changePerPage = (event) => {
-    onPageClick(1, 1);
-    dispatch(getItems({ page: 1, perPage: event.target.value, isEditable }));
+    onPageClick(firstPage);
+    dispatch(
+      getItems({ page: firstPage, perPage: event.target.value, isEditable })
+    );
   };
 
   useEffect(() => {
-    updateData(1, 1);
+    updateData(firstPage);
   }, []);
 
   return (
@@ -51,7 +61,7 @@ const ProductsContainer = function ({
             portionNumber={portionNumber}
             totalItems={totalItems}
             perPage={perPage}
-            currentPage={page}
+            currentPage={currentPage}
             onPageClick={onPageClick}
           />
           <ShowPerPage perPage={perPage} changePerPage={changePerPage} />
@@ -59,7 +69,7 @@ const ProductsContainer = function ({
             updateData={updateData}
             isEditable={isEditable}
             onProductItemButtonClick={onProductItemButtonClick}
-            currentPage={page}
+            currentPage={currentPage}
             origins={origins}
             items={items}
             productItemButtonName={productItemButtonName}

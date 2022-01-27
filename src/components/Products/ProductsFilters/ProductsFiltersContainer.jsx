@@ -8,6 +8,7 @@ import {
   setMinPrice,
   setSelectedOrigins,
 } from "../../../store/products/products-slice";
+import { firstPage } from "../../../utils/constants";
 
 const ProductsFiltersContainer = function ({ updateData }) {
   const { origins, maxPrice, minPrice, selectedOrigins } = ProductsSelectors();
@@ -22,7 +23,7 @@ const ProductsFiltersContainer = function ({ updateData }) {
     } else {
       dispatch(setSelectedOrigins(e));
     }
-    updateData(1, 1);
+    updateData(firstPage);
   };
   const onMinPriceChange = (e) => {
     let min = e;
@@ -38,7 +39,7 @@ const ProductsFiltersContainer = function ({ updateData }) {
     dispatch(setSelectedOrigins([]));
     dispatch(setMinPrice(0));
     dispatch(setMaxPrice(10000000));
-    updateData(1, 1);
+    updateData(firstPage);
   };
   return (
     <div>

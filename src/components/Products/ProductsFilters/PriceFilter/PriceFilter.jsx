@@ -3,6 +3,7 @@ import Slider from "@mui/material/Slider";
 import React from "react";
 import * as PropTypes from "prop-types";
 import s from "../ProductsFilters.module.css";
+import { firstPage } from "../../../../utils/constants";
 
 const PriceFilter = function ({
   minPrice,
@@ -16,13 +17,13 @@ const PriceFilter = function ({
       <input
         value={Number(minPrice)}
         onChange={(e) => onMinPriceChange(e.target.value.replace(/\D+/g, ""))}
-        onBlur={() => updateData(1, 1)}
+        onBlur={() => updateData(firstPage)}
       />
       &nbsp;-&nbsp;
       <input
         value={Number(maxPrice)}
         onChange={(e) => onMaxPriceChange(e.target.value.replace(/\D+/g, ""))}
-        onBlur={() => updateData(1, 1)}
+        onBlur={() => updateData(firstPage)}
       />
       &nbsp;$&nbsp;
       <div className={s.slider}>

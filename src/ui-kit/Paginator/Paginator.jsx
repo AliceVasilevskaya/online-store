@@ -2,21 +2,25 @@ import React from "react";
 import cn from "classnames";
 import * as PropTypes from "prop-types";
 import s from "./Paginator.module.css";
+import { maxValueOfFirstPortion } from "../../utils/constants";
 
 const Paginator = function ({
   totalItems,
   perPage,
   currentPage = 1,
   onPageClick = () => {},
-  portionNumber = 1,
 }) {
   const pagesCount = Math.ceil(totalItems / perPage);
   const pages = [];
   for (let i = 1; i <= pagesCount; i += 1) {
     pages.push(i);
   }
+  let portionNumber = 1;
   const portionSize = 2;
   const portionCount = Math.ceil(pagesCount / portionSize) - 1;
+  if (currentPage > maxValueOfFirstPortion) {
+    portionNumber = Math.ceil(currentPage / portionSize) - 1;
+  }
   const leftPortionPageNumber = (portionNumber - 1) * portionSize + 1;
   const rightPortionPageNumber = portionNumber * portionSize + 2;
   return (
@@ -65,7 +69,7 @@ const Paginator = function ({
             );
           })}
 
-        {portionNumber !== portionCount && pagesCount > 4 && (
+        {portionNumber !== portionCount && pagesCount > maxValueOfFirstPortion && (
           <>
             <Dots />
             <Arrow
@@ -77,7 +81,7 @@ const Paginator = function ({
             />
           </>
         )}
-        {currentPage < pagesCount && pagesCount > 4 && (
+        {currentPage < pagesCount && pagesCount > maxValueOfFirstPortion && (
           <Arrow
             currentPage={currentPage}
             whichPortionNumber={rightPortionPageNumber}
@@ -146,13 +150,11 @@ Paginator.propTypes = {
   perPage: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   currentPage: PropTypes.number,
   onPageClick: PropTypes.func,
-  portionNumber: PropTypes.number,
 };
 Paginator.defaultProps = {
   totalItems: 1,
   perPage: 10,
   currentPage: 1,
   onPageClick: () => {},
-  portionNumber: 1,
 };
 export default Paginator;

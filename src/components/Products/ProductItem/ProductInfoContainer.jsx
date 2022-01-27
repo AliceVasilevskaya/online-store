@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useHistory, useParams } from "react-router";
 import { useDispatch } from "react-redux";
 import Preloader from "../../../ui-kit/Preloader/Preloader";
@@ -30,23 +30,23 @@ const ProductInfoContainer = function () {
     dispatch(deleteProduct({ id }));
     history.push(ROUTES.MY_PRODUCTS);
   };
-  const onButtonClick = ({ val, product }) => {
+  const onButtonClick = useCallback(({ val, product }) => {
     if (isEditable) {
       dispatch(setOpen([true, false]));
       dispatch(setValues(val));
     } else if (isEditable === false) {
       dispatch(addProductToCart(product, 1));
     }
-  };
-  const buttonName = () => {
-    if (item.isEditable) {
+  }, []);
+  const buttonName = useCallback(() => {
+    if (item && item.isEditable) {
       return "Edit product";
     }
-    if (item.isEditable === false) {
+    if (item && item.isEditable === false) {
       return "Add product to cart";
     }
     return undefined;
-  };
+  }, [item]);
 
   return (
     <div>

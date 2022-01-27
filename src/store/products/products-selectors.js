@@ -35,7 +35,7 @@ const ProductsSelectors = function () {
   const perPage = useSelector((state) => {
     return state.productsPage.perPage;
   });
-  const page = useSelector((state) => {
+  const currentPage = useSelector((state) => {
     return state.productsPage.page;
   });
   const values = useSelector((state) => {
@@ -43,9 +43,6 @@ const ProductsSelectors = function () {
   });
   const isFetching = useSelector((state) => {
     return state.productsPage.isFetching;
-  });
-  const portionNumber = useSelector((state) => {
-    return state.productsPage.portionNumber;
   });
   const selectedOrigins = useSelector((state) => {
     return state.productsPage.selectedOrigins;
@@ -70,10 +67,9 @@ const ProductsSelectors = function () {
     selectedOrigins,
     totalItems,
     perPage,
-    page,
+    currentPage,
     items,
     isFetching,
-    portionNumber,
     openAdd,
     openEdit,
   };

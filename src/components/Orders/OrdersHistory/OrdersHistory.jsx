@@ -21,7 +21,7 @@ const OrdersHistory = function ({ orders }) {
   );
 };
 const ordersPropType = {
-  items: PropTypes.instanceOf(Array),
+  items: PropTypes.array,
 };
 OrdersHistory.propTypes = {
   orders: PropTypes.shape(ordersPropType),
