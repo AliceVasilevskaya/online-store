@@ -4,43 +4,40 @@
 }
 
 .container {
-  margin: 10px 20px 0 20px;
+  margin: 0 40px 0 40px;
   height: 70px;
   color: white;
   display: flex;
   justify-content: space-between;
 }
 
-.right {
-  align-content: flex-end;
-}
-
 .cartIcon {
-  margin: -5px 0 0 0;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
 }
 
-.right img {
+.cart img {
   width: 50px;
-  margin: 0;
+  margin-left: 5px;
 }
 
-.right:hover {
+.cart:hover {
   filter: sepia(1) hue-rotate(435deg) saturate(10);
 }
 
 .totalPrice {
-  margin: -10px 0 0 13px;
   color: white;
   font-size: 15px;
   text-align: center;
 }
 
-.left {
-  margin: 5px;
+.body {
+  margin-top: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
   align-content: flex-start;
 }
 
@@ -55,9 +52,30 @@
 a.active {
   color: aquamarine;
   text-shadow: 0 0 4px rgb(47, 79, 79);
-  font-size: 40px;
 }
 
 a:hover {
   color: aquamarine;
+}
+
+.button {
+  flex-direction: column;
+  background: aquamarine;
+  color: black;
+  text-transform: uppercase;
+  border: none;
+  padding: 15px 0 15px 0;
+  margin-top: 5px;
+  font-size: 10px;
+  font-weight: 100;
+  appearance: none;
+  border-radius: 4px;
+  width: 120px;
+  height: 20px;
+  justify-content: center;
+  align-items: center;
+}
+.button:hover:not(:active) {
+  box-shadow: 0 0 3px white, 0 1px 1px 1px white,
+    0 -1px 1px 1px white;
 }

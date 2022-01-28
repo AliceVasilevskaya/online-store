@@ -3,6 +3,7 @@ import * as PropTypes from "prop-types";
 import styles from "./Cart.module.css";
 import CartItem from "./CartItem/CartItem";
 import { cartItem } from "../../utils/constants";
+import Button from "../../ui-kit/Button/Button";
 
 const CartList = function ({
   totalPrice,
@@ -10,7 +11,12 @@ const CartList = function ({
   addProductToCart,
   deleteProductFromCart,
   deleteAllProductsByType,
+  onBuyClick,
 }) {
+  const pieces = [];
+  cartItems.map((item) =>
+    pieces.push({ productId: item.id, count: item.quantity })
+  );
   return (
     <div>
       <h2>Shopping Cart</h2>
@@ -41,6 +47,23 @@ const CartList = function ({
                 <tr>
                   <th colSpan="3">Subtotal</th>
                   <th>${totalPrice}</th>
+                  <th>
+                    <div className={styles.buyButton}>
+                      {cartItems.length > 0 && (
+                        <Button
+                          child="Buy"
+                          type="button"
+                          onClick={() =>
+                            onBuyClick({
+                              order: {
+                                pieces,
+                              },
+                            })
+                          }
+                        />
+                      )}
+                    </div>
+                  </th>
                 </tr>
               </tbody>
             </table>
@@ -52,6 +75,7 @@ const CartList = function ({
 };
 const CartPropType = PropTypes.shape(cartItem);
 CartList.propTypes = {
+  onBuyClick: PropTypes.func,
   cartItems: PropTypes.arrayOf(CartPropType),
   totalPrice: PropTypes.number,
   deleteAllProductsByType: PropTypes.func,
@@ -59,6 +83,7 @@ CartList.propTypes = {
   addProductToCart: PropTypes.func,
 };
 CartList.defaultProps = {
+  onBuyClick: () => {},
   cartItems: [],
   totalPrice: 0,
   deleteAllProductsByType: () => {},

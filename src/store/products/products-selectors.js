@@ -1,23 +1,32 @@
 import { createSelector } from "@reduxjs/toolkit";
-import { denormalize } from "normalizr";
+import { denormalize, schema } from "normalizr";
 import { useSelector } from "react-redux";
-import { item } from "./products-async-actions";
 
+const i = new schema.Entity("items");
 const ProductsSelectors = function () {
   const getItemsSelector = (state) => {
     return denormalize(
       state.productsPage.products.result,
-      [item],
+      [i],
       state.productsPage.products.entities
     );
   };
   const error = useSelector((state) => {
     return state.productsPage.error;
   });
+  const openAdd = useSelector((state) => {
+    return state.productsPage.openAdd;
+  });
+  const openEdit = useSelector((state) => {
+    return state.productsPage.openEdit;
+  });
+  const isEditable = useSelector((state) => {
+    return state.productsPage.isEditable;
+  });
   const items = useSelector(
     createSelector(getItemsSelector, (products) => products)
   );
-  const product = useSelector((state) => {
+  const item = useSelector((state) => {
     return state.productsPage.product;
   });
   const totalItems = useSelector((state) => {
@@ -26,14 +35,14 @@ const ProductsSelectors = function () {
   const perPage = useSelector((state) => {
     return state.productsPage.perPage;
   });
-  const page = useSelector((state) => {
+  const currentPage = useSelector((state) => {
     return state.productsPage.page;
+  });
+  const values = useSelector((state) => {
+    return state.productsPage.values;
   });
   const isFetching = useSelector((state) => {
     return state.productsPage.isFetching;
-  });
-  const portionNumber = useSelector((state) => {
-    return state.productsPage.portionNumber;
   });
   const selectedOrigins = useSelector((state) => {
     return state.productsPage.selectedOrigins;
@@ -48,18 +57,21 @@ const ProductsSelectors = function () {
     return state.productsPage.origins;
   });
   return {
+    isEditable,
+    values,
     error,
-    product,
+    item,
     origins,
     maxPrice,
     minPrice,
     selectedOrigins,
     totalItems,
     perPage,
-    page,
+    currentPage,
     items,
     isFetching,
-    portionNumber,
+    openAdd,
+    openEdit,
   };
 };
 export default ProductsSelectors;

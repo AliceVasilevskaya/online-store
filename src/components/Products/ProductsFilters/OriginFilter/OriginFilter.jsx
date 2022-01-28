@@ -2,12 +2,13 @@ import Select from "react-select";
 import React from "react";
 import * as PropTypes from "prop-types";
 import s from "../ProductsFilters.module.css";
+import { firstPage } from "../../../../utils/constants";
 
 const OriginFilter = function ({
   origins,
   onOriginChange,
   selectedOrigins,
-  onFilterChange,
+  updateData,
 }) {
   const originsWithAll = origins.filter((x) => x.label === "All");
   const options = selectedOrigins.some((el) => {
@@ -23,20 +24,30 @@ const OriginFilter = function ({
       defaultValue={selectedOrigins}
       isMulti
       onChange={(e) => onOriginChange(e)}
-      onBlur={onFilterChange}
+      onBlur={() => updateData(firstPage)}
     />
   );
 };
 OriginFilter.propTypes = {
-  origins: PropTypes.instanceOf(Array),
+  origins: PropTypes.arrayOf(
+    PropTypes.shape({
+      displayName: PropTypes.string,
+      value: PropTypes.string,
+    })
+  ),
   onOriginChange: PropTypes.func,
-  selectedOrigins: PropTypes.instanceOf(Array),
-  onFilterChange: PropTypes.func,
+  selectedOrigins: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string,
+      value: PropTypes.string,
+    })
+  ),
+  updateData: PropTypes.func,
 };
 OriginFilter.defaultProps = {
   origins: [],
   onOriginChange: () => {},
   selectedOrigins: [],
-  onFilterChange: () => {},
+  updateData: () => {},
 };
 export default OriginFilter;

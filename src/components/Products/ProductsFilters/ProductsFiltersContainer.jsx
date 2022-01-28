@@ -1,18 +1,17 @@
 import { useDispatch } from "react-redux";
 import React from "react";
-import * as PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import ProductsFilters from "./ProductsFilters";
 import ProductsSelectors from "../../../store/products/products-selectors";
-import { getItems } from "../../../store/products/products-async-actions";
 import {
   setMaxPrice,
   setMinPrice,
   setSelectedOrigins,
 } from "../../../store/products/products-slice";
+import { firstPage } from "../../../utils/constants";
 
-const ProductsFiltersContainer = function ({ onPageClick }) {
-  const { origins, maxPrice, minPrice, selectedOrigins, perPage } =
-    ProductsSelectors();
+const ProductsFiltersContainer = function ({ updateData }) {
+  const { origins, maxPrice, minPrice, selectedOrigins } = ProductsSelectors();
   const dispatch = useDispatch();
   const onOriginChange = (e) => {
     if (
@@ -24,8 +23,7 @@ const ProductsFiltersContainer = function ({ onPageClick }) {
     } else {
       dispatch(setSelectedOrigins(e));
     }
-    onPageClick(1, 1);
-    dispatch(getItems({ page: 1, perPage }));
+    updateData(firstPage);
   };
   const onMinPriceChange = (e) => {
     let min = e;
@@ -37,16 +35,11 @@ const ProductsFiltersContainer = function ({ onPageClick }) {
   const onMaxPriceChange = (e) => {
     dispatch(setMaxPrice(e));
   };
-  const onFilterChange = () => {
-    onPageClick(1, 1);
-    dispatch(getItems({ page: 1, perPage }));
-  };
   const onFilterClear = () => {
     dispatch(setSelectedOrigins([]));
     dispatch(setMinPrice(0));
-    dispatch(setMaxPrice(10000));
-    onPageClick(1, 1);
-    dispatch(getItems({ page: 1, perPage }));
+    dispatch(setMaxPrice(10000000));
+    updateData(firstPage);
   };
   return (
     <div>
@@ -55,7 +48,7 @@ const ProductsFiltersContainer = function ({ onPageClick }) {
         maxPrice={maxPrice}
         onMaxPriceChange={onMaxPriceChange}
         onMinPriceChange={onMinPriceChange}
-        onFilterChange={onFilterChange}
+        updateData={updateData}
         onFilterClear={onFilterClear}
         origins={origins}
         onOriginChange={onOriginChange}
@@ -65,9 +58,9 @@ const ProductsFiltersContainer = function ({ onPageClick }) {
   );
 };
 ProductsFiltersContainer.propTypes = {
-  onPageClick: PropTypes.func,
+  updateData: PropTypes.func,
 };
 ProductsFiltersContainer.defaultProps = {
-  onPageClick: () => {},
+  updateData: () => {},
 };
 export default ProductsFiltersContainer;

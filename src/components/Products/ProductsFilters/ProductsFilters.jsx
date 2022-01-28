@@ -4,13 +4,14 @@ import OriginFilter from "./OriginFilter/OriginFilter";
 import PriceFilter from "./PriceFilter/PriceFilter";
 import s from "./ProductsFilters.module.css";
 import Button from "../../../ui-kit/Button/Button";
+import { firstPage } from "../../../utils/constants";
 
 const ProductsFilters = function ({
   minPrice,
   maxPrice,
   onMaxPriceChange,
   onMinPriceChange,
-  onFilterChange,
+  updateData,
   origins,
   onOriginChange,
   selectedOrigins,
@@ -23,16 +24,16 @@ const ProductsFilters = function ({
         maxPrice={maxPrice}
         onMaxPriceChange={onMaxPriceChange}
         onMinPriceChange={onMinPriceChange}
-        onFilterChange={onFilterChange}
+        updateData={updateData}
       />
       <OriginFilter
-        onFilterChange={onFilterChange}
+        updateData={updateData}
         origins={origins}
         onOriginChange={onOriginChange}
         selectedOrigins={selectedOrigins}
       />
 
-      <Button child="Apply filter" onClick={onFilterChange} />
+      <Button child="Apply filter" onClick={() => updateData(firstPage)} />
       <button
         className={s.clearAllFilters}
         type="button"
@@ -44,25 +45,35 @@ const ProductsFilters = function ({
   );
 };
 ProductsFilters.propTypes = {
-  origins: PropTypes.instanceOf(Array),
+  origins: PropTypes.arrayOf(
+    PropTypes.shape({
+      displayName: PropTypes.string,
+      value: PropTypes.string,
+    })
+  ),
   onOriginChange: PropTypes.func,
-  selectedOrigins: PropTypes.instanceOf(Array),
-  onFilterChange: PropTypes.func,
+  selectedOrigins: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string,
+      value: PropTypes.string,
+    })
+  ),
   minPrice: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   maxPrice: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onMaxPriceChange: PropTypes.func,
   onMinPriceChange: PropTypes.func,
   onFilterClear: PropTypes.func,
+  updateData: PropTypes.func,
 };
 ProductsFilters.defaultProps = {
   origins: [],
   onOriginChange: () => {},
   selectedOrigins: [],
-  onFilterChange: () => {},
   minPrice: 0,
   maxPrice: 10000,
   onMaxPriceChange: () => {},
   onMinPriceChange: () => {},
   onFilterClear: () => {},
+  updateData: () => {},
 };
 export default ProductsFilters;
