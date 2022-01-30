@@ -11,10 +11,11 @@ import {
   getProduct,
 } from "../../../store/products/products-async-actions";
 import ROUTES from "../../../routes/pathsOfRoutes";
+import { firstPage } from "../../../utils/constants";
 
 const ModalFormContainer = function () {
   const {
-    origins,
+    allOrigins,
     perPage,
     page,
     isFetching,
@@ -40,7 +41,7 @@ const ModalFormContainer = function () {
     dispatch(addProduct({ data }));
     if (location.pathname !== ROUTES.MY_PRODUCTS) {
       history.push(ROUTES.MY_PRODUCTS);
-      updateData(1);
+      updateData(firstPage);
     } else {
       updateData(page);
     }
@@ -57,7 +58,7 @@ const ModalFormContainer = function () {
             isFetching={isFetching}
             onSubmitButtonClick={onApplyChangesSubmitClick}
             values={values}
-            origins={origins}
+            origins={allOrigins}
             submitName="apply changes"
           />
         </ModalComponent>
@@ -73,7 +74,7 @@ const ModalFormContainer = function () {
               price: "",
               origin: undefined,
             }}
-            origins={origins}
+            origins={allOrigins}
             submitName="add product"
           />
         </ModalComponent>

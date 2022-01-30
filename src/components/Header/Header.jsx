@@ -10,10 +10,16 @@ const Header = function ({ totalPrice, pathname, onAddProductClick }) {
     <header className={styles.header}>
       <div className={styles.container}>
         <div className={styles.body}>
-          <NavLink to={ROUTES.PRODUCTS} activeClassName={styles.active}>
+          <NavLink
+            to={`${ROUTES.PRODUCTS}${ROUTES.DEFAULT_FILTERS}`}
+            activeClassName={styles.active}
+          >
             All products
           </NavLink>
-          <NavLink to={ROUTES.MY_PRODUCTS} activeClassName={styles.active}>
+          <NavLink
+            to={`${ROUTES.MY_PRODUCTS}${ROUTES.DEFAULT_FILTERS}`}
+            activeClassName={styles.active}
+          >
             My products
           </NavLink>
           <NavLink to={ROUTES.ORDERS} activeClassName={styles.active}>

@@ -2,12 +2,12 @@ import React from "react";
 import cn from "classnames";
 import * as PropTypes from "prop-types";
 import s from "./Paginator.module.css";
-import { maxValueOfFirstPortion } from "../../utils/constants";
+import { firstPage, maxValueOfFirstPortion } from "../../utils/constants";
 
 const Paginator = function ({
   totalItems,
   perPage,
-  currentPage = 1,
+  currentPage = firstPage,
   onPageClick = () => {},
 }) {
   const pagesCount = Math.ceil(totalItems / perPage);
@@ -137,7 +137,7 @@ Arrow.propTypes = {
   className: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
 };
 Arrow.defaultProps = {
-  currentPage: 1,
+  currentPage: firstPage,
   whichPortionNumber: 1,
   onPageClick: () => {},
   modifiedCurrentPage: 0,
@@ -154,7 +154,7 @@ Paginator.propTypes = {
 Paginator.defaultProps = {
   totalItems: 1,
   perPage: 10,
-  currentPage: 1,
+  currentPage: firstPage,
   onPageClick: () => {},
 };
 export default Paginator;

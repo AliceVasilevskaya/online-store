@@ -18,6 +18,7 @@ const OriginFilter = function ({
     : origins;
   return (
     <Select
+      closeMenuOnSelect={false}
       className={s.originFilter}
       value={selectedOrigins}
       options={options}

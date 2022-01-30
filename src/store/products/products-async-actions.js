@@ -15,20 +15,18 @@ import {
 export const item = new schema.Entity("items");
 export const getItems = createAsyncThunk(
   "products/getProducts",
-  async ({ page, perPage, isEditable }, { dispatch, getState }) => {
-    const origins = [];
-    const { productsPage } = getState();
-    productsPage.selectedOrigins.map((el) => {
-      return origins.push(el.value);
-    });
+  async (
+    { page, perPage, origins, minPrice, maxPrice, isEditable },
+    { dispatch }
+  ) => {
     dispatch(setCurrentPage(page));
     dispatch(setPerPage(perPage));
     const data = await productsApi.getProductsList(
       page,
       perPage,
-      origins.join(),
-      productsPage.minPrice,
-      productsPage.maxPrice,
+      origins,
+      Number(minPrice),
+      Number(maxPrice),
       isEditable
     );
     dispatch(setIsEditable(isEditable));

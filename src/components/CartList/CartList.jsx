@@ -48,7 +48,7 @@ const CartList = function ({
                   <th colSpan="3">Subtotal</th>
                   <th>${totalPrice}</th>
                   <th>
-                    <div className={styles.buyButton}>
+                    <div>
                       {cartItems.length > 0 && (
                         <Button
                           child="Buy"

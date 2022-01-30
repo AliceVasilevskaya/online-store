@@ -7,9 +7,10 @@ import {
   addProductToCart,
   deleteAllProductsByType,
   deleteProductFromCart,
-  postOrder,
 } from "../../store/cart/cart-async-actions";
 import ROUTES from "../../routes/pathsOfRoutes";
+import { getOrdersActions } from "../../store/orders/orders-actions";
+import ordersApi from "../../api/orders-api";
 
 const CartContainer = function () {
   const { items, totalPrice } = CartSelectors();
@@ -25,7 +26,15 @@ const CartContainer = function () {
     dispatch(deleteAllProductsByType(productItem));
   };
   const onBuyClick = (order) => {
-    dispatch(postOrder({ order }));
+    // dispatch(postOrder({ order }));
+
+    // Change logic according to HM#4
+    dispatch(
+      getOrdersActions.init({
+        requestFunction: ordersApi.postMyOrder,
+        params: order,
+      })
+    );
     history.push(ROUTES.ORDERS);
   };
   return (

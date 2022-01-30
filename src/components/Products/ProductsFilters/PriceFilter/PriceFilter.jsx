@@ -3,34 +3,34 @@ import Slider from "@mui/material/Slider";
 import React from "react";
 import * as PropTypes from "prop-types";
 import s from "../ProductsFilters.module.css";
-import { firstPage } from "../../../../utils/constants";
+import { maxFilterValue, minFilterValue } from "../../../../utils/constants";
 
 const PriceFilter = function ({
   minPrice,
   maxPrice,
   onMaxPriceChange,
   onMinPriceChange,
-  updateData,
+  onApplyFilterClick,
 }) {
   return (
     <div className={s.priceFilter}>
       <input
         value={Number(minPrice)}
         onChange={(e) => onMinPriceChange(e.target.value.replace(/\D+/g, ""))}
-        onBlur={() => updateData(firstPage)}
+        onBlur={() => onApplyFilterClick()}
       />
       &nbsp;-&nbsp;
       <input
         value={Number(maxPrice)}
         onChange={(e) => onMaxPriceChange(e.target.value.replace(/\D+/g, ""))}
-        onBlur={() => updateData(firstPage)}
+        onBlur={() => onApplyFilterClick()}
       />
       &nbsp;$&nbsp;
       <div className={s.slider}>
         <Box sx={{ width: 200 }}>
           <Slider
-            min={0}
-            max={10000}
+            min={minFilterValue}
+            max={maxFilterValue}
             getAriaLabel={() => "Price range"}
             value={[Number(minPrice), Number(maxPrice)]}
             onChange={(e) => {
@@ -49,13 +49,13 @@ PriceFilter.propTypes = {
   maxPrice: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onMaxPriceChange: PropTypes.func,
   onMinPriceChange: PropTypes.func,
-  updateData: PropTypes.func,
+  onApplyFilterClick: PropTypes.func,
 };
 PriceFilter.defaultProps = {
-  minPrice: 0,
-  maxPrice: 10000,
+  minPrice: minFilterValue,
+  maxPrice: maxFilterValue,
   onMaxPriceChange: () => {},
   onMinPriceChange: () => {},
-  updateData: () => {},
+  onApplyFilterClick: () => {},
 };
 export default PriceFilter;

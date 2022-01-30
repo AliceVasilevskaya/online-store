@@ -1,12 +1,13 @@
 import ROUTES from "../routes/pathsOfRoutes";
 import httpClient from "./api";
+import { firstPage, maxFilterValue, minFilterValue } from "../utils/constants";
 
 const getProducts = (
-  page = 1,
+  page = firstPage,
   perPage = 10,
   origins = "",
-  minPrice = 0,
-  maxPrice = 10000,
+  minPrice = minFilterValue,
+  maxPrice = maxFilterValue,
   isEditable = false
 ) => {
   return httpClient

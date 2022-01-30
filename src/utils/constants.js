@@ -25,6 +25,8 @@ const ProductValues = {
 const firstPage = 1;
 const oneItem = 1;
 const maxValueOfFirstPortion = 4;
+const maxFilterValue = 100000;
+const minFilterValue = 1;
 
 export {
   productItem,
@@ -33,4 +35,6 @@ export {
   firstPage,
   oneItem,
   maxValueOfFirstPortion,
+  maxFilterValue,
+  minFilterValue,
 };

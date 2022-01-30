@@ -47,13 +47,13 @@ const ProductsSelectors = function () {
   const selectedOrigins = useSelector((state) => {
     return state.productsPage.selectedOrigins;
   });
-  const minPrice = useSelector((state) => {
+  const minPriceFromState = useSelector((state) => {
     return state.productsPage.minPrice;
   });
-  const maxPrice = useSelector((state) => {
+  const maxPriceFromState = useSelector((state) => {
     return state.productsPage.maxPrice;
   });
-  const origins = useSelector((state) => {
+  const allOrigins = useSelector((state) => {
     return state.productsPage.origins;
   });
   return {
@@ -61,9 +61,9 @@ const ProductsSelectors = function () {
     values,
     error,
     item,
-    origins,
-    maxPrice,
-    minPrice,
+    allOrigins,
+    maxPriceFromState,
+    minPriceFromState,
     selectedOrigins,
     totalItems,
     perPage,
