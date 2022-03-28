@@ -2,7 +2,10 @@ import React, { useCallback, useEffect } from "react";
 import { useHistory, useParams } from "react-router";
 import { useDispatch } from "react-redux";
 import Preloader from "../../../ui-kit/Preloader/Preloader";
-import { setProduct } from "../../../store/products/products-actions";
+import {
+  setIsEditable,
+  setProduct,
+} from "../../../store/products/products-actions";
 import ProductsSelectors from "../../../store/products/products-selectors";
 import {
   deleteProduct,
@@ -13,17 +16,19 @@ import ProductItem from "./ProductItem";
 import styles from "./ProductItem.module.css";
 import { setOpen, setValues } from "../../../store/products/products-slice";
 import ROUTES from "../../../routes/pathsOfRoutes";
+import { oneItem } from "../../../utils/constants";
 
 const ProductInfoContainer = function () {
   const { isFetching, item, origins, error, isEditable } = ProductsSelectors();
   const dispatch = useDispatch();
   const params = useParams();
-  const { productId } = params;
   const history = useHistory();
+  const { productId } = params;
   useEffect(() => {
     dispatch(getProduct({ productId }));
     return () => {
       dispatch(setProduct({}));
+      dispatch(setIsEditable(null));
     };
   }, []);
   const onDeleteClick = ({ id }) => {
@@ -34,8 +39,8 @@ const ProductInfoContainer = function () {
     if (isEditable) {
       dispatch(setOpen([true, false]));
       dispatch(setValues(val));
-    } else if (isEditable === false) {
-      dispatch(addProductToCart(product, 1));
+    } else if (isEditable === false || item === undefined) {
+      dispatch(addProductToCart(product, oneItem));
     }
   }, []);
   const buttonName = useCallback(() => {

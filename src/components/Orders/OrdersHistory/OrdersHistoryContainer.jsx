@@ -1,14 +1,22 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import OrdersHistory from "./OrdersHistory";
-import CartSelectors from "../../../store/cart/cart-selectors";
-import { getOrders } from "../../../store/cart/cart-async-actions";
+import OrdersSelectors from "../../../store/orders/orders-selectors";
+import { getOrdersActions } from "../../../store/orders/orders-actions";
+import ordersApi from "../../../api/orders-api";
 
 const OrdersHistoryContainer = function () {
-  const { orders } = CartSelectors();
+  const { orders } = OrdersSelectors();
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getOrders());
+    // dispatch(getOrders());
+
+    // Change logic according to HM#4
+    dispatch(
+      getOrdersActions.init({
+        requestFunction: ordersApi.getMyOrders,
+      })
+    );
   }, []);
 
   return (

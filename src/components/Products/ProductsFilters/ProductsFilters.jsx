@@ -4,7 +4,7 @@ import OriginFilter from "./OriginFilter/OriginFilter";
 import PriceFilter from "./PriceFilter/PriceFilter";
 import s from "./ProductsFilters.module.css";
 import Button from "../../../ui-kit/Button/Button";
-import { firstPage } from "../../../utils/constants";
+import { maxFilterValue, minFilterValue } from "../../../utils/constants";
 
 const ProductsFilters = function ({
   minPrice,
@@ -16,10 +16,12 @@ const ProductsFilters = function ({
   onOriginChange,
   selectedOrigins,
   onFilterClear,
+  onApplyFilterClick,
 }) {
   return (
     <div>
       <PriceFilter
+        onApplyFilterClick={onApplyFilterClick}
         minPrice={minPrice}
         maxPrice={maxPrice}
         onMaxPriceChange={onMaxPriceChange}
@@ -32,8 +34,7 @@ const ProductsFilters = function ({
         onOriginChange={onOriginChange}
         selectedOrigins={selectedOrigins}
       />
-
-      <Button child="Apply filter" onClick={() => updateData(firstPage)} />
+      <Button child="Apply filter" onClick={() => onApplyFilterClick()} />
       <button
         className={s.clearAllFilters}
         type="button"
@@ -45,6 +46,7 @@ const ProductsFilters = function ({
   );
 };
 ProductsFilters.propTypes = {
+  onApplyFilterClick: PropTypes.func,
   origins: PropTypes.arrayOf(
     PropTypes.shape({
       displayName: PropTypes.string,
@@ -69,11 +71,12 @@ ProductsFilters.defaultProps = {
   origins: [],
   onOriginChange: () => {},
   selectedOrigins: [],
-  minPrice: 0,
-  maxPrice: 10000,
+  minPrice: minFilterValue,
+  maxPrice: maxFilterValue,
   onMaxPriceChange: () => {},
   onMinPriceChange: () => {},
   onFilterClear: () => {},
   updateData: () => {},
+  onApplyFilterClick: () => {},
 };
 export default ProductsFilters;

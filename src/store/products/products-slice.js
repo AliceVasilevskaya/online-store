@@ -16,6 +16,11 @@ import {
   setProducts,
   setTotalItems,
 } from "./products-actions";
+import {
+  firstPage,
+  maxFilterValue,
+  minFilterValue,
+} from "../../utils/constants";
 
 export const productsAdapter = createEntityAdapter();
 
@@ -24,13 +29,11 @@ const initialState = productsAdapter.getInitialState({
   item: {},
   isFetching: true,
   totalItems: 0,
-  page: 1,
+  page: firstPage,
   perPage: 10,
-  portionNumber: 1,
-  price: [0, 1000000000],
   origins: [],
-  minPrice: 0,
-  maxPrice: 1000000000,
+  minPrice: minFilterValue,
+  maxPrice: maxFilterValue,
   selectedOrigins: [],
   error: null,
   isEditable: null,
@@ -43,9 +46,6 @@ const productsSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
-    setPortionNumber: (state, action) => {
-      return { ...state, portionNumber: action.payload };
-    },
     setSelectedOrigins: (state, action) => {
       return {
         ...state,

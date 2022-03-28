@@ -7,16 +7,16 @@ const CartSelectors = function () {
   const totalPrice = useSelector((state) => {
     return state.cartPage.totalPrice;
   });
-  const order = useSelector((state) => {
-    return state.cartPage.order;
-  });
-  const orders = useSelector((state) => {
-    return state.cartPage.orders;
-  });
+  // const order = useSelector((state) => {
+  //   return state.cartPage.order;
+  // });
+  // const orders = useSelector((state) => {
+  //   return state.cartPage.orders;
+  // });
 
   return {
-    order,
-    orders,
+    // order,
+    // orders,
     items,
     totalPrice,
   };

@@ -29,6 +29,7 @@ const ProductItem = function ({
     price,
     origin: originWithLabel[0],
   };
+
   return (
     <div className={styles.productItemContainer} key={id}>
       <div className={styles.left}>
